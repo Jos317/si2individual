@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8"/>
-        <title>Color Admin | Login v2</title>
+        <title>Login</title>
         <meta
             content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
             name="viewport"/>
@@ -40,10 +40,9 @@
                         <div class="brand">
                             <div class="d-flex align-items-center">
                                 <span class="logo"></span>
-                                <b>Color</b>
-                                Admin
+                                <b>Login</b>
+                                User
                             </div>
-                            <small>Bootstrap 5 Responsive Admin Template</small>
                         </div>
                         <div class="icon">
                             <i class="fa fa-lock"></i>
@@ -60,7 +59,7 @@
                                     id="emailAddress"/>
                                 <label
                                     for="emailAddress"
-                                    class="d-flex align-items-center text-gray-600 fs-13px">Email Address</label>
+                                    class="d-flex align-items-center text-gray-600 fs-13px">Email</label>
                             </div>
                             <div class="form-floating mb-20px">
                                 <input
@@ -69,7 +68,7 @@
                                     placeholder="Password"/>
                                 <label
                                     for="emailAddress"
-                                    class="d-flex align-items-center text-gray-600 fs-13px">Password</label>
+                                    class="d-flex align-items-center text-gray-600 fs-13px">Contraseña</label>
                             </div>
                             <div class="form-check mb-20px">
                                 <input
@@ -82,7 +81,7 @@
                                 </label>
                             </div>
                             <div class="mb-20px">
-                                <button type="submit" class="btn btn-success d-block w-100 h-45px btn-lg">Sign me in</button>
+                                <button type="submit" class="btn btn-success d-block w-100 h-45px btn-lg">Ingresar</button>
                             </div>
                             <div class="text-gray-500">
                                 Not a member yet? Click
