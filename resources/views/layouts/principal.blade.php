@@ -44,7 +44,9 @@
                 <a href="#" data-dismiss="app-sidebar-mobile" class="stretched-link"></a>
             </div>
 
-            @include('layouts.contenidoPrincipal')
+            <div id="content" class="app-content">
+                @yield('content')
+            </div>
 
             @include('layouts.temasPrincipal')
 

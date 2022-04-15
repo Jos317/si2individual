@@ -1,3 +1,6 @@
+@extends('layouts.principal')
+
+@section('content')
 <ol class="breadcrumb float-xl-end">
     <li class="breadcrumb-item">
         <a href="javascript:;">Home</a>
@@ -927,3 +930,7 @@
     </div>
 
 </div>
+@endsection
+@push('scripts')
+
+@endpush
