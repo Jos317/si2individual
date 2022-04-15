@@ -23,6 +23,7 @@ class CreatePacienteTable extends Migration
             $table->date('fecha_nac');
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('imagen')->default('');
             $table->timestamps();
         });
     }
