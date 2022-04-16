@@ -25,6 +25,7 @@ class CreatePacienteTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('imagen')->default('');
+            $table->tinyint('estado')->default(0);
             $table->timestamps();
         });
     }
