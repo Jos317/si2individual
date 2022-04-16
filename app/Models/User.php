@@ -5,7 +5,10 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -18,9 +21,14 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'nombre',
+        'ci',
+        'direccion',
+        'telefono',
+        'biografia',
         'email',
         'password',
+        'imagen',
     ];
 
     /**
@@ -42,13 +50,57 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function bitacora()
+    public static function store_medico(Request $request)
     {
-        return $this->hasMany('App\Models\Bitacora','idusuario','id');
+        $medico = new User();
+        $medico->nombre = $request->nombre;
+        $medico->ci = $request->ci;
+        $medico->direccion = $request->direccion;
+        $medico->telefono = $request->telefono;
+        $medico->biografia = $request->biografia ?? '';
+        $medico->email = $request->email;
+        $medico->password = Hash::make($request->password);
+        if($request->hasFile('imagen')){
+            $extension = $request->imagen->extension();
+            if($extension == "png" || $extension == "jpg" || $extension == "jpeg"){
+                $nombre = round(microtime(true)) . '.' . $extension;
+                Storage::disk('public')->putFileAs('medico', $request->imagen, $nombre);
+                $path = 'storage/medico/' . $nombre;
+                $medico->imagen = $path;
+            }
+        }
+        $medico->save();
     }
 
-    public function especialidad()
+    public static function update_medico(Request $request)
     {
-        return $this->hasMany('App\Models\Especialidad','idusuario','id');
+        $medico = User::findOrFail($request->id);
+        $medico->nombre = $request->nombre;
+        $medico->ci = $request->ci;
+        $medico->direccion = $request->direccion;
+        $medico->telefono = $request->telefono;
+        $medico->biografia = $request->biografia ?? '';
+        $medico->email = $request->email;
+        if($request->password != "")
+        {
+            $medico->password = Hash::make($request->password);
+        }
+        if($request->hasFile('imagen')){
+            $extension = $request->imagen->extension();
+            if($extension == "png" || $extension == "jpg" || $extension == "jpeg"){
+                $nombre = round(microtime(true)) . '.' . $extension;
+                Storage::disk('public')->putFileAs('medico', $request->imagen, $nombre);
+                $path = 'storage/medico/' . $nombre;
+                $medico->imagen = $path;
+            }
+        }
+        $medico->update();
+    }
+
+    public static function eliminar(Request $request)
+    {
+        $banner = User::findOrFail($request->id);
+        $banner->estado = 1;
+        $banner->update();
     }
 }

@@ -52,7 +52,30 @@
                 </div>
                 <div class="menu-divider m-0"></div>
             </div>
-            <div class="menu-header">Navigation</div>
+
+            <div class="menu-header">Administración</div>
+            <div class="menu-item has-sub active">
+                <a href="javascript:;" class="menu-link">
+                    <div class="menu-icon">
+                        <i class="fas fa-user-group"></i>
+                    </div>
+                    <div class="menu-text">Usuarios</div>
+                    <div class="menu-caret"></div>
+                </a>
+                <div class="menu-submenu">
+                    <div class="menu-item active">
+                        <a href="{{url('medicos')}}" class="menu-link">
+                            <div class="menu-text">Medicos</div>
+                        </a>
+                    </div>
+                    <div class="menu-item">
+                        <a href="{{url('pacientes')}}" class="menu-link">
+                            <div class="menu-text">Pacientes</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {{-- <div class="menu-header">Navigation</div>
             <div class="menu-item has-sub active">
                 <a href="javascript:;" class="menu-link">
                     <div class="menu-icon">
@@ -936,7 +959,7 @@
                         </a>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
             <div class="menu-item d-flex">
                 <a
@@ -944,7 +967,7 @@
                     class="app-sidebar-minify-btn ms-auto"
                     data-toggle="app-sidebar-minify">
                     <i class="ion-ios-arrow-back"></i>
-                    <div class="menu-text">Collapse</div>
+                    <div class="menu-text"></div>
                 </a>
             </div>
 
