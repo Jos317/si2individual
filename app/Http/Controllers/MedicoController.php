@@ -12,7 +12,7 @@ class MedicoController extends Controller
 {
     public function index()
     {
-        $medicos = User::orderBy('id', 'DESC')->paginate(10);
+        $medicos = User::where('estado', 0)->orderBy('id', 'DESC')->paginate(10);
         return view('medico.index', compact('medicos'));
     }
 

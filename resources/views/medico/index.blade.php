@@ -51,7 +51,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url: "{{url('administracion/banner/eliminar')}}",
+                    url: "{{url('medico/eliminar')}}",
                     data: {
                         id: id
                     },
@@ -72,7 +72,7 @@
                             allowOutsideClick: false,
                         }).then((result) => {
                             if (result.isConfirmed) {
-                                window.location = "{{url('administracion/banners')}}";
+                                window.location = "{{url('medicos')}}";
                             }
                         });
                         

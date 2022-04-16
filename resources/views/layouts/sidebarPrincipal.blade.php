@@ -54,7 +54,9 @@
             </div>
 
             <div class="menu-header">Administración</div>
-            <div class="menu-item has-sub active">
+            <div class="menu-item has-sub
+                {{Request::is('medicos') || Request::is('medico/*') ? 'expand' : ''}}
+            ">
                 <a href="javascript:;" class="menu-link">
                     <div class="menu-icon">
                         <i class="fas fa-user-group"></i>
@@ -62,8 +64,10 @@
                     <div class="menu-text">Usuarios</div>
                     <div class="menu-caret"></div>
                 </a>
-                <div class="menu-submenu">
-                    <div class="menu-item active">
+                <div class="menu-submenu"
+                    {{Request::is('medicos') || Request::is('medico/*') ? 'style=display:block' : 'style=display:none'}}
+                >
+                    <div class="menu-item {{Request::is('medicos') || Request::is('medico/*') ? 'active' : ''}}">
                         <a href="{{url('medicos')}}" class="menu-link">
                             <div class="menu-text">Medicos</div>
                         </a>
