@@ -33,4 +33,5 @@ Route::middleware(['auth'])->group(function () {
     Route::post('medico/store', [MedicoController::class, 'store']);
     Route::get('medico/edit/{id}', [MedicoController::class, 'edit']);
     Route::post('medico/update', [MedicoController::class, 'update']);
+    Route::post('medico/eliminar', [MedicoController::class, 'destroy']);
 });
