@@ -9,19 +9,52 @@ use Illuminate\Support\Facades\Hash;
 
 class PacienteController extends Controller
 {
-    public function login(Request $request){
+    public function login(Request $request)
+    {
         try {
-            $paciente = Paciente::where('email', $request->email)->where('estado', 0)->first();
-            if($paciente)
-            {
-                if(Hash::check($request->password, $paciente->password)){
-                    return response()->json(['mensaje' => 'Consulta exitosa', 'data' => $paciente], 200);
-                }else{
-                    throw new \Exception("Contraseña incorrecta");
-                }
-            }else{
-                throw new \Exception("Ese usuario no existe");
+            if (! $token = auth('api')->attempt(['email' => $request->email, 'password' => $request->password])) {
+                return response()->json(['mensaje' => 'Credenciales incorrectas'], 401);
             }
+            $paciente = auth('api')->user();
+            return $this->respondWithToken($token, $paciente);
+        } catch (\Exception $e) {
+            return response()->json(['mensaje' => $e->getMessage()]);
+        }
+        
+    }
+
+    // public function me()
+    // {
+    //     return response()->json(auth()->user());
+    // }
+
+    public function logout()
+    {
+        auth('api')->logout();
+
+        return response()->json(['message' => 'Cierre de sesión exitoso'], 200);
+    }
+
+    // public function refresh()
+    // {
+    //     return $this->respondWithToken(auth('api')->refresh());
+    // }
+
+    protected function respondWithToken($token, $paciente)
+    {
+        return response()->json([
+            'mensaje' => 'Token generado exitosamente',
+            'token' => $token,
+            'data' => $paciente
+            // 'expires_in' => auth()->factory()->getTTL() * 60
+        ], 200);
+    }
+
+    public function obtenerPacientes()
+    {
+        try {
+            $pacientes = Paciente::get();
+            return response()->json(['mensaje' => 'Consulta exitosa', 'data' => $pacientes], 200);
         } catch (\Exception $e) {
             return response()->json(['mensaje' => $e->getMessage()], 500);
         }

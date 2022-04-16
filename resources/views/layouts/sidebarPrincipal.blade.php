@@ -66,8 +66,7 @@
                     <div class="menu-caret"></div>
                 </a>
                 <div class="menu-submenu"
-                    {{Request::is('medicos') || Request::is('medico/*') ? 'style=display:block' : 'style=display:none'}}
-                    {{Request::is('pacientes') || Request::is('paciente/*') ? 'style=display:block' : 'style=display:none'}}
+                    {{Request::is('medicos') || Request::is('medico/*') || Request::is('pacientes') || Request::is('paciente/*')  ? 'style=display:block' : 'style=display:none'}}
                 >
                     <div class="menu-item {{Request::is('medicos') || Request::is('medico/*') ? 'active' : ''}}">
                         <a href="{{url('medicos')}}" class="menu-link">

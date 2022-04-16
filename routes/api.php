@@ -19,4 +19,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('verificarPaciente', [PacienteController::class, 'login']);
+Route::post('login', [PacienteController::class, 'login']);
+
+Route::group(['middleware' => ['jwt.verify']], function (){
+    Route::get('obtenerPacientes', [PacienteController::class, 'obtenerPacientes']);
+});
