@@ -2,7 +2,7 @@
 <html lang="es">
     <head>
         <meta charset="utf-8"/>
-        <title>Color Admin | Dashboard V1</title>
+        <title>Clinica</title>
         <meta
             content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
             name="viewport"/>
@@ -10,7 +10,7 @@
         <meta content="" name="description"/>
         <meta content="" name="author"/>
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <link rel="icon" type="image/svg" href="{{asset('asset/img/gallery/gallery-1.jpg')}}">
+        <link rel="icon" type="image/svg" href="{{asset('asset/img/logo/logo.jpg')}}">
 
         <link href="{{asset('asset/css/vendor.min.css')}}" rel="stylesheet"/>
         <link href="{{asset('asset/css/apple/app.min.css')}}" rel="stylesheet"/>
