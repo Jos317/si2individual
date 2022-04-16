@@ -87,6 +87,9 @@ class User extends Authenticatable
             $medico->password = Hash::make($request->password);
         }
         if($request->hasFile('imagen')){
+            if($medico->imagen){
+                Storage::disk('public')->delete($medico->imagen);
+            }
             $extension = $request->imagen->extension();
             if($extension == "png" || $extension == "jpg" || $extension == "jpeg"){
                 $nombre = round(microtime(true)) . '.' . $extension;

@@ -12,7 +12,7 @@ class Paciente extends Model
 {
     use HasFactory;
     protected $table = 'paciente';
-    protected $fillable = ['nombre', 'apellido', 'ci', 'direccion', 'telefono', 'sexo', 'fecha_nac', 'imagen', 'email', 'password'];
+    protected $fillable = ['nombre', 'apellido', 'ci', 'direccion', 'telefono', 'sexo', 'fecha_nac', 'imagen', 'email', 'password', 'estado'];
     public $timestamps = false;
 
     /**
@@ -29,7 +29,8 @@ class Paciente extends Model
         return $this->hasMany('App\Models\Historial','ipaciente','id');
     }
 
-    public static function store(Request $request){
+    public static function store_paciente(Request $request){
+        print($request);
         $paciente = new Paciente();
         $paciente->ci = $request->ci;
         $paciente->nombre = $request->nombre;
@@ -45,14 +46,14 @@ class Paciente extends Model
             if($extension == "png" || $extension == "jpg" || $extension == "jpeg"){
                 $nombre = round(microtime(true)) . '.' . $extension;
                 Storage::disk('public')->putFileAs('paciente', $request->imagen, $nombre);
-                $path = 'paciente/' . $nombre;
+                $path = 'storage/paciente/' . $nombre;
                 $paciente->imagen = $path;
             }
         }
-        $paciente->update();
+        $paciente->save();
     }
 
-    public static function actualizar(Request $request){
+    public static function update_paciente(Request $request){
         $paciente = Paciente::findOrFail($request->id);
         $paciente->ci = $request->ci;
         $paciente->nombre = $request->nombre;
@@ -61,6 +62,10 @@ class Paciente extends Model
         $paciente->direccion = $request->direccion;
         $paciente->fecha_nac = $request->fecha_nac;
         $paciente->email = $request->email;
+        if($request->password != "")
+        {
+            $paciente->password = Hash::make($request->password);
+        }
         if($request->hasFile('imagen')){
             if($paciente->imagen){
                 Storage::disk('public')->delete($paciente->imagen);
@@ -69,10 +74,17 @@ class Paciente extends Model
             if($extension == "png" || $extension == "jpg" || $extension == "jpeg"){
                 $nombre = round(microtime(true)) . '.' . $extension;
                 Storage::disk('public')->putFileAs('paciente', $request->imagen, $nombre);
-                $path = 'paciente/' . $nombre;
+                $path = 'storage/paciente/' . $nombre;
                 $paciente->imagen = $path;
             }
         }
         $paciente->update();
+    }
+
+    public static function eliminar(Request $request)
+    {
+        $banner = User::findOrFail($request->id);
+        $banner->estado = 1;
+        $banner->update();
     }
 }

@@ -56,6 +56,7 @@
             <div class="menu-header">Administración</div>
             <div class="menu-item has-sub
                 {{Request::is('medicos') || Request::is('medico/*') ? 'expand' : ''}}
+                {{Request::is('pacientes') || Request::is('paciente/*') ? 'expand' : ''}}
             ">
                 <a href="javascript:;" class="menu-link">
                     <div class="menu-icon">
@@ -66,13 +67,14 @@
                 </a>
                 <div class="menu-submenu"
                     {{Request::is('medicos') || Request::is('medico/*') ? 'style=display:block' : 'style=display:none'}}
+                    {{Request::is('pacientes') || Request::is('paciente/*') ? 'style=display:block' : 'style=display:none'}}
                 >
                     <div class="menu-item {{Request::is('medicos') || Request::is('medico/*') ? 'active' : ''}}">
                         <a href="{{url('medicos')}}" class="menu-link">
                             <div class="menu-text">Medicos</div>
                         </a>
                     </div>
-                    <div class="menu-item">
+                    <div class="menu-item {{Request::is('pacientes') || Request::is('paciente/*') ? 'active' : ''}}">
                         <a href="{{url('pacientes')}}" class="menu-link">
                             <div class="menu-text">Pacientes</div>
                         </a>
