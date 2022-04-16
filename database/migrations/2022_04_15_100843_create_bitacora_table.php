@@ -20,6 +20,7 @@ class CreateBitacoraTable extends Migration
             $table->string('nombre_implicado', 50)->nullable();
             $table->unsignedBigInteger('idusuario');
             $table->foreign('idusuario')->references('id')->on('users');
+            $table->timestamps();
         });
     }
 

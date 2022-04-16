@@ -18,6 +18,7 @@ class CreatePacienteTable extends Migration
             $table->string('nombre', 20);
             $table->string('apellido', 20);
             $table->string('ci', 10);
+            $table->string('telefono', 10);
             $table->string('direccion', 50)->nullable();
             $table->char('sexo',1);
             $table->date('fecha_nac');
