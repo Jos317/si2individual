@@ -98,9 +98,13 @@
                 href="#"
                 class="navbar-link dropdown-toggle d-flex align-items-center"
                 data-bs-toggle="dropdown">
+                @if (auth()->user()->imagen != "")
+                <img src="{{asset(auth()->user()->imagen)}}" alt=""/>    
+                @else
                 <img src="{{asset('asset/img/user/user-13.jpg')}}" alt=""/>
+                @endif
                 <span>
-                    <span class="d-none d-md-inline">Adam Schwartz</span>
+                    <span class="d-none d-md-inline">{{auth()->user()->nombre}}</span>
                     <b class="caret"></b>
                 </span>
             </a>
