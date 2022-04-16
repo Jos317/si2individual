@@ -17,7 +17,7 @@ class CreateHistorialTable extends Migration
             $table->id();
             $table->string('documento');
             $table->text('nota');
-            $table->timestamps();
+            $table->date('fecha_registro');
             $table->unsignedBigInteger('idpaciente');
             $table->foreign('idpaciente')->references('id')->on('paciente');
         });
