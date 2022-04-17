@@ -31,6 +31,11 @@ class Paciente extends Authenticatable implements JWTSubject
         return $this->hasMany('App\Models\Historial','ipaciente','id');
     }
 
+    public function infoadicional()
+    {
+        return $this->hasOne('App\Models\User','idpaciente','id');
+    }
+
     public static function store_paciente(Request $request){
         print($request);
         $paciente = new Paciente();

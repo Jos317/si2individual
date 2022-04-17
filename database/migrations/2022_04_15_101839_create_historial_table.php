@@ -16,7 +16,7 @@ class CreateHistorialTable extends Migration
         Schema::create('historial', function (Blueprint $table) {
             $table->id();
             $table->string('documento');
-            $table->text('nota');
+            $table->text('nota') ->default('');
             $table->date('fecha_registro');
             $table->unsignedBigInteger('idpaciente');
             $table->foreign('idpaciente')->references('id')->on('paciente');

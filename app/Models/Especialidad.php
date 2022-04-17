@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class Especialidad extends Model
 {
@@ -13,21 +14,21 @@ class Especialidad extends Model
     protected $fillable = ['nombre', 'idusuario'];
     public $timestamps = false;
 
-    public function user(){
+    public function users(){
         return $this->belongsTo('App\Models\User','idusuario','id');
     }
 
     public static function store(Request $request){
         $especialidad = new Especialidad();
         $especialidad->nombre = $request->nombre;
-        $especialidad->idusuario = $request->idusuario;
+        $especialidad->idusuario = Auth::user()->id;
         $especialidad->save();
     }
 
     public static function actualizar(Request $request){
         $especialidad = Especialidad::findOrFail($request->id);
         $especialidad->nombre = $request->nombre;
-        $especialidad->idusuario = $request->idusuario;
+        $especialidad->idusuario = Auth::user()->id;
         $especialidad->update();
     }
 }
