@@ -18,7 +18,7 @@ class PacienteController extends Controller
             $paciente = auth('api')->user();
             return $this->respondWithToken($token, $paciente);
         } catch (\Exception $e) {
-            return response()->json(['mensaje' => $e->getMessage()]);
+            return response()->json(['mensaje' => $e->getMessage()], 500);
         }
         
     }
