@@ -50,11 +50,11 @@ class PacienteController extends Controller
         ], 200);
     }
 
-    public function obtenerPacientes()
+    public function obtenerPaciente()
     {
         try {
-            $pacientes = Paciente::get();
-            return response()->json(['mensaje' => 'Consulta exitosa', 'data' => $pacientes], 200);
+            $paciente = auth('api')->user();
+            return response()->json(['mensaje' => 'Consulta exitosa', 'data' => $paciente], 200);
         } catch (\Exception $e) {
             return response()->json(['mensaje' => $e->getMessage()], 500);
         }
