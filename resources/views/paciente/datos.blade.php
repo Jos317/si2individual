@@ -45,10 +45,19 @@
                             <i class="fas fa-pencil-alt fa-fw"></i> Editar
                         </a>
 
-                        <a class="btn btn-sm btn-danger me-1" onclick="eliminar({{$item->id}})">
+                        {{-- <a class="btn btn-sm btn-danger me-1" onclick="eliminar({{$item->id}})">
                             <i class="fa fa-trash fa-fw" aria-hidden="true"></i>
                             Eliminar
-                        </a>
+                        </a> --}}
+                        @if ($item->estado == 0)
+                            <a class="btn btn-sm btn-success me-1" href="{{url('paciente/anadir/'.$item->id)}}">
+                                <i class="ion-md-clipboard"></i> Añadir Informacion Adicional
+                            </a>
+                        @else
+                            <a class="btn btn-sm btn-yellow me-1" href="{{url('paciente/ver/'.$item->id)}}">
+                                <i class="ion-md-eye"></i> Ver Informacion Adicional
+                            </a>
+                        @endif 
                     </td>
                 </tr>
             @endforeach

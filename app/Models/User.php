@@ -51,6 +51,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function consulta()
+    {
+        return $this->hasMany('App\Models\Consulta','idusuario','id');
+    }
+
+    public function bitacora()
+    {
+        return $this->hasMany('App\Models\Bitacora','idusuario','id');
+    }
+
     public static function store_medico(Request $request)
     {
         $medico = new User();

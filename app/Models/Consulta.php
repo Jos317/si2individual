@@ -18,6 +18,14 @@ class Consulta extends Model
         return $this->hasOne('App\Models\Receta','idconsulta','id');
     }
 
+    public function user(){
+        return $this->belongsTo('App\Models\User','idusuario','id');
+    }
+
+    public function paciente(){
+        return $this->belongsTo('App\Models\Paciente','idpaciente','id');
+    }
+
     public static function store_consulta(Request $request){
         $consulta = new Consulta();
         $consulta->motivo = $request->motivo;

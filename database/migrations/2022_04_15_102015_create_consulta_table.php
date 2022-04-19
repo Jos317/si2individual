@@ -19,6 +19,7 @@ class CreateConsultaTable extends Migration
             $table->date('fecha_registro');
             $table->time('hora_inicio');
             $table->time('hora_fin');
+            $table->tinyInteger('estado')->default(0);
             $table->unsignedBigInteger('idusuario');
             $table->foreign('idusuario')->references('id')->on('users');
             $table->unsignedBigInteger('idpaciente');

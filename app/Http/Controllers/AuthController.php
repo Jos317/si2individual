@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bitacora;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,6 +19,12 @@ class AuthController extends Controller
         // dd(User::find(1));
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $request->session()->regenerate();
+
+            $bitacora = new Bitacora();
+            $bitacora->accion = 'Inició Sesión';
+            $bitacora->idusuario = Auth::user()->id;
+            $bitacora->save();
+
             return redirect()->intended('dashboard');
         }
 

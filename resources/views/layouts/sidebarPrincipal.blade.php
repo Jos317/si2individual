@@ -60,7 +60,7 @@
             ">
                 <a href="javascript:;" class="menu-link">
                     <div class="menu-icon">
-                        <i class="fas fa-user-group"></i>
+                        <i class="fas fa-user-group bg-blue"></i>
                     </div>
                     <div class="menu-text">Usuarios</div>
                     <div class="menu-caret"></div>
@@ -80,6 +80,35 @@
                     </div>
                 </div>
             </div>
+            <div class="menu-divider m-0"></div>
+            <div class="menu-header">Historias Clínicas</div>
+            <div class="menu-item has-sub
+                {{Request::is('historiales') || Request::is('historial/*') ? 'expand' : ''}}
+                {{Request::is('consultas') || Request::is('consulta/*') ? 'expand' : ''}}
+            ">
+                <a href="javascript:;" class="menu-link">
+                    <div class="menu-icon">
+                        <i class="ion-ios-briefcase bg-gradient-purple-indigo"></i>
+                    </div>
+                    <div class="menu-text">Antecedentes de los pacientes</div>
+                    <div class="menu-caret"></div>
+                </a>
+                <div class="menu-submenu"
+                    {{Request::is('historiales') || Request::is('historial/*') || Request::is('consultas') || Request::is('consulta/*') ? 'style=display:block' : 'style=display:none'}}
+                >
+                    <div class="menu-item {{Request::is('historiales') || Request::is('historial/*') ? 'active' : ''}}">
+                        <a href="{{url('historiales')}}" class="menu-link">
+                            <div class="menu-text">Historias</div>
+                        </a>
+                    </div>
+                    <div class="menu-item {{Request::is('consultas') || Request::is('consulta/*') ? 'active' : ''}}">
+                        <a href="{{url('consultas')}}" class="menu-link">
+                            <div class="menu-text">Consultas</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-divider m-0"></div>
             {{-- <div class="menu-header">Navigation</div>
             <div class="menu-item has-sub active">
                 <a href="javascript:;" class="menu-link">

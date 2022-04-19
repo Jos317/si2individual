@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Infoadicional;
 use App\Models\Paciente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -12,7 +13,7 @@ class PacienteController extends Controller
 {
     public function index()
     {
-        $pacientes = Paciente::where('estado', 0)->orderBy('id', 'DESC')->paginate(10);
+        $pacientes = Paciente::orderBy('id', 'DESC')->paginate(10);
         return view('paciente.index', compact('pacientes'));
     }
 
@@ -79,16 +80,62 @@ class PacienteController extends Controller
         ]);
     }
 
-    public function destroy(Request $request)
+    // public function destroy(Request $request)
+    // {
+    //     try {
+    //         DB::beginTransaction();
+    //         Paciente::eliminar($request);
+    //         DB::commit();
+    //         return response()->json(['mensaje' => 'Paciente eliminado exitosamente'], 200);
+    //     } catch (\Exception $e) {
+    //         DB::rollBack();
+    //         return response()->json(['mensaje' => $e->getMessage()], 500);
+    //     }
+    // }
+
+    public function anadir($id)
+    {
+        $paciente = Paciente::where('id', $id)->first();
+        return view('infoadicional.create', compact('paciente'));
+    }
+
+    public function ver($id)
+    {
+        $infoadicional = Infoadicional::where('id', $id)->first();
+        return view('infoadicional.ver', compact('infoadicional'));
+    }
+
+    public function store_adicional(Request $request)
     {
         try {
             DB::beginTransaction();
-            Paciente::eliminar($request);
+            Infoadicional::store_infoadicional($request);
             DB::commit();
-            return response()->json(['mensaje' => 'Paciente eliminado exitosamente'], 200);
+            return redirect()->to('pacientes')->with('message', 'Información adicional agregado exitosamente!');
         } catch (\Exception $e) {
-            DB::rollBack();
-            return response()->json(['mensaje' => $e->getMessage()], 500);
+            DB::rollback();
+            return back()->with(['error' => $e->getMessage()]);
         }
     }
+
+    public function edit_adicional($id)
+    {
+        $infoadicional = Infoadicional::find($id);
+        return view('infoadicional.edit', compact('infoadicional'));
+    }
+
+    public function update_adicional(Request $request)
+    {
+        // dd(json_decode(json_encode($request->all())));
+        try {
+            DB::beginTransaction();
+            Infoadicional::update_infoadicional($request);
+            DB::commit();
+            return redirect('pacientes')->with(['message' => 'Información adicional actualizado exitosamente!!']);
+        } catch (\Exception $e) {
+            DB::rollback();
+            return back()->with(['error' => $e->getMessage()]);
+        }
+    }
+
 }

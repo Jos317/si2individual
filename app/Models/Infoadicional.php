@@ -26,11 +26,16 @@ class Infoadicional extends Model
         $info_adicional->ante_psiqui = $request->ante_psiqui ?? ''; 
         $info_adicional->dieta_nutri = $request->dieta_nutri ?? '';
         $info_adicional->idpaciente = $request->idpaciente;
+
+        $paciente = Paciente::findOrFail($request->idpaciente);
+        $paciente->estado = 1;
+        $paciente->update();
+
         $info_adicional->save();
     }
 
     public static function update_infoadicional(Request $request){
-        $info_adicional = Infoadicional::findOrFail($request->id);
+        $info_adicional = Infoadicional::findOrFail($request->idpaciente);
         $info_adicional->alergia = $request->alergia ?? '';
         $info_adicional->ante_here_fami = $request->ante_here_fami ?? '';
         $info_adicional->ante_no_pato = $request->ante_no_pato ?? '';

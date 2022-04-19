@@ -28,12 +28,17 @@ class Paciente extends Authenticatable implements JWTSubject
     
     public function historial()
     {
-        return $this->hasMany('App\Models\Historial','ipaciente','id');
+        return $this->hasMany('App\Models\Historial','idpaciente','id');
     }
 
     public function infoadicional()
     {
         return $this->hasOne('App\Models\User','idpaciente','id');
+    }
+
+    public function consulta()
+    {
+        return $this->hasMany('App\Models\Consulta','idpaciente','id');
     }
 
     public static function store_paciente(Request $request){
@@ -88,12 +93,12 @@ class Paciente extends Authenticatable implements JWTSubject
         $paciente->update();
     }
 
-    public static function eliminar(Request $request)
-    {
-        $banner = User::findOrFail($request->id);
-        $banner->estado = 1;
-        $banner->update();
-    }
+    // public static function eliminar(Request $request)
+    // {
+    //     $banner = User::findOrFail($request->id);
+    //     $banner->estado = 1;
+    //     $banner->update();
+    // }
 
     public function getJWTIdentifier()
     {

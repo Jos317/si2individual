@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Bitacora;
 use App\Models\Paciente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class PacienteController extends Controller
 {
@@ -16,6 +18,13 @@ class PacienteController extends Controller
                 return response()->json(['mensaje' => 'Credenciales incorrectas'], 401);
             }
             $paciente = auth('api')->user();
+
+            $bitacora = new Bitacora();
+            $bitacora->accion = 'Inició Sesión';
+            $bitacora->nombre_implicado = $paciente->nombre;
+            $bitacora->idusuario = $paciente->id;
+            $bitacora->save();
+
             return $this->respondWithToken($token, $paciente);
         } catch (\Exception $e) {
             return response()->json(['mensaje' => $e->getMessage()], 500);

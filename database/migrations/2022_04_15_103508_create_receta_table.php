@@ -15,7 +15,7 @@ class CreateRecetaTable extends Migration
     {
         Schema::create('receta', function (Blueprint $table) {
             $table->id();
-            $table->string('conclusion');
+            $table->text('conclusion');
             $table->timestamps();
             $table->unsignedBigInteger('idconsulta');
             $table->foreign('idconsulta')->references('id')->on('consulta');

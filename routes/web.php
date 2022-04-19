@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ConsultaController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HistorialController;
 use App\Http\Controllers\MedicoController;
 use App\Http\Controllers\PacienteController;
 use Illuminate\Support\Facades\Route;
@@ -42,4 +44,23 @@ Route::middleware(['auth'])->group(function () {
     Route::get('paciente/edit/{id}', [PacienteController::class, 'edit']);
     Route::post('paciente/update', [PacienteController::class, 'update']);
     Route::post('paciente/eliminar', [PacienteController::class, 'destroy']);
+    Route::get('paciente/anadir/{id}', [PacienteController::class, 'anadir']);
+    Route::get('paciente/ver/{id}', [PacienteController::class, 'ver']);
+    Route::post('paciente/store_infoadicional', [PacienteController::class, 'store_adicional']);
+    Route::get('paciente/edit_info/{id}', [PacienteController::class, 'edit_adicional']);
+    Route::post('paciente/update_info', [PacienteController::class, 'update_adicional']);
+
+    Route::get('historiales', [HistorialController::class, 'index']);
+    Route::get('historial/create', [HistorialController::class, 'create']);
+    Route::post('historial/store', [HistorialController::class, 'store']);
+    Route::get('historial/edit/{id}', [HistorialController::class, 'edit']);
+    Route::post('historial/update', [HistorialController::class, 'update']);
+    Route::get('historial/download/{id}', [HistorialController::class, 'download']);
+
+    Route::get('consultas', [ConsultaController::class, 'index']);
+    Route::get('consulta/anadir/{id}', [ConsultaController::class, 'anadir']);
+    Route::post('receta/store', [ConsultaController::class, 'store']);
+    Route::get('receta/ver/{id}', [ConsultaController::class, 'ver']);
+    Route::get('receta/edit/{id}', [ConsultaController::class, 'edit']);
+    Route::post('receta/update', [ConsultaController::class, 'update']);
 });

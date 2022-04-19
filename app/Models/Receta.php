@@ -23,14 +23,20 @@ class Receta extends Model
     }
 
     public static function store_receta(Request $request){
+        // dd(json_decode(json_encode($request->conclusion)));
         $receta = new Receta();
-        $receta->conclusion = $request->conclusion;
+        $receta->conclusion = $request->conclusion??'';
         $receta->idconsulta = $request->idconsulta;
+
+        $consulta = Consulta::findOrFail($request->idconsulta);
+        $consulta->estado = 1;
+        $consulta->update();
+
         $receta->save();
     }
 
     public static function update_receta(Request $request){
-        $receta = Receta::findOrFail($request->id);
+        $receta = Receta::findOrFail($request->idconsulta);
         $receta->conclusion = $request->conclusion;
         $receta->idconsulta = $request->idconsulta;
         $receta->update();

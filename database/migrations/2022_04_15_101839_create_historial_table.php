@@ -16,10 +16,10 @@ class CreateHistorialTable extends Migration
         Schema::create('historial', function (Blueprint $table) {
             $table->id();
             $table->string('documento');
-            $table->text('nota') ->default('');
-            $table->date('fecha_registro');
+            $table->string('nota');
             $table->unsignedBigInteger('idpaciente');
             $table->foreign('idpaciente')->references('id')->on('paciente');
+            $table->timestamps();
         });
     }
 
