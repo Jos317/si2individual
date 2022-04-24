@@ -35,7 +35,7 @@ class Infoadicional extends Model
     }
 
     public static function update_infoadicional(Request $request){
-        $info_adicional = Infoadicional::findOrFail($request->idpaciente);
+        $info_adicional = Infoadicional::where('idpaciente', $request->idpaciente)->first();
         $info_adicional->alergia = $request->alergia ?? '';
         $info_adicional->ante_here_fami = $request->ante_here_fami ?? '';
         $info_adicional->ante_no_pato = $request->ante_no_pato ?? '';

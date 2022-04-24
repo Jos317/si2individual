@@ -15,6 +15,8 @@ class CreateRecetaTable extends Migration
     {
         Schema::create('receta', function (Blueprint $table) {
             $table->id();
+            $table->text('medicamento')->default('');
+            $table->text('tratamiento')->default('');
             $table->text('conclusion');
             $table->timestamps();
             $table->unsignedBigInteger('idconsulta');

@@ -35,7 +35,7 @@
                 </div>
             </div>
             @endif
-            <input type="hidden" name="idpaciente" id="idpaciente" value="{{$historial->id}}">
+            <input type="hidden" name="id" id="id" value="{{$historial->id}}">
             <div class="form-group row">
                 <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 mb-2">
                     <label class="form-label">Documento: <span style="color: red">*</span></label>
@@ -73,11 +73,6 @@
 </div>
 @endsection
 @push('scripts')
-<script src="//cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
-<script>
-    CKEDITOR.replace('biografia');
-    CKEDITOR.config.height = 100;
-</script>
 <script>
     var paciente = {!! json_encode($paciente) !!};
 

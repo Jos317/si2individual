@@ -4,9 +4,8 @@
             <tr>
                 <th style="text-align: center">#</th>
                 <th style="text-align: center">Motivo</th>
-                <th style="text-align: center">Fecha Registro</th>
-                <th style="text-align: center">Hora de Inicio</th>
-                <th style="text-align: center">Hora Fin</th>
+                <th style="text-align: center">Fecha y hora de Inicio</th>
+                <th style="text-align: center">Fecha y hora Fin</th>
                 <th style="text-align: center">Paciente</th>
                 <th style="text-align: center">Opciones</th>
             </tr>
@@ -16,10 +15,32 @@
                 <tr>
                     <td>{{$item->id}}</td>
                     <td>{{$item->motivo}}</td>
-                    <td>{{$item->fecha_registro}}</td>
-                    <td>{{$item->hora_inicio}}</td>
-                    <td>{{$item->hora_fin}}</td>
+                    <td>{{$item->inicio}}</td>
+                    <td>{{$item->fin}}</td>
                     <td>{{$item->paciente_nombre}}</td>
+                    <td style="text-align: center">
+                        @if ($item->estado == 0)
+                            <a class="btn btn-sm btn-primary me-1" href="{{url('consulta/anadir/'.$item->id)}}">
+                                <i class="ion-md-clipboard"></i> Añadir Receta
+                            </a>
+                        @else
+                            <a class="btn btn-sm btn-yellow me-1" href="{{url('receta/ver/'.$item->id)}}">
+                                <i class="ion-md-eye"></i> Ver Receta
+                            </a>
+                        @endif
+                        <a class="btn btn-sm btn-info me-1" href="{{url('diagnostico/ver/'.$item->id)}}">
+                            <i class="ion-md-clipboard"></i> Ver Diagnóstico
+                        </a>
+                        @if ($item->estado_i == 0)
+                            <a class="btn btn-sm btn-pink me-1" href="{{url('informacion/anadir/'.$item->id)}}">
+                                <i class="ion-md-clipboard"></i> Añadir Información del paciente
+                            </a>
+                        @else
+                            <a class="btn btn-sm btn-yellow me-1" href="{{url('informacion/ver/'.$item->id)}}">
+                                <i class="ion-md-eye"></i> Ver Información del paciente
+                            </a>
+                        @endif
+                    </td>
                     {{-- <td style="text-align: center">
                         @if ($item->estado == 'activo')
                         <span style="border-radius: 30px 30px 30px 30px !important;width: 100%;padding: 3px 7px 3px 7px;background-color: #14C061;color: white">
@@ -31,20 +52,8 @@
                             Inactivo
                         </span>
                         @endif
-                    </td> --}}
-                    @if ($item->estado == 1)
-                        <td style="text-align: center">
-                            <a class="btn btn-sm btn-primary me-1" href="{{url('consulta/anadir/'.$item->id)}}">
-                                <i class="ion-md-clipboard"></i> Añadir Receta
-                            </a>
-                        </td>
-                    @else
-                        <td style="text-align: center">
-                            <a class="btn btn-sm btn-yellow me-1" href="{{url('receta/ver/'.$item->id)}}">
-                                <i class="ion-md-eye"></i> Ver Receta
-                            </a>
-                        </td>
-                    @endif    
+                    </td> --}} 
+                      
                 </tr>
             @endforeach
         </tbody>

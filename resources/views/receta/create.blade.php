@@ -38,6 +38,16 @@
             @endif
             <input type="hidden" name="idconsulta" value="{{$consulta->id}}">
             <div class="form-group row">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
+                    <label class="form-label">Medicamentos: </label>
+                    <textarea name="medicamento" id="medicamento">{!!old('medicamento')!!}</textarea>
+                </div>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
+                    <label class="form-label">Tratamiento: </label>
+                    <textarea name="tratamiento" id="tratamiento">{!!old('tratamiento')!!}</textarea>
+                </div>
+            </div>
+            <div class="form-group row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-2">
                     <label class="form-label">Conclusion: <span style="color: red">*</span></label>
                     <textarea name="conclusion" id="conclusion" required>{!!old('conclusion')!!}</textarea>
@@ -59,6 +69,8 @@
 @push('scripts')
 <script src="//cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
 <script>
+    CKEDITOR.replace('medicamento');
+    CKEDITOR.replace('tratamiento');
     CKEDITOR.replace('conclusion');
     CKEDITOR.config.height = 100;
 </script>

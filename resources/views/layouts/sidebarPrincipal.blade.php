@@ -10,16 +10,20 @@
                     data-target="#appSidebarProfileMenu">
                     <div class="menu-profile-cover with-shadow"></div>
                     <div class="menu-profile-image">
-                        <img src="{{asset('asset/img/user/user-13.jpg')}}" alt=""/>
+                        @if (auth()->user()->imagen != "")
+                            <img src="{{asset(auth()->user()->imagen)}}" alt=""/>    
+                        @else
+                            <img src="{{asset('asset/img/user/user-13.jpg')}}" alt=""/>
+                        @endif
                     </div>
                     <div class="menu-profile-info">
                         <div class="d-flex align-items-center">
                             <div class="flex-grow-1">
-                                Sean Ngu
+                                {{auth()->user()->nombre}}
                             </div>
                             <div class="menu-caret ms-auto"></div>
                         </div>
-                        <small>Front end developer</small>
+                        <small>Médico</small>
                     </div>
                 </a>
             </div>
@@ -76,6 +80,11 @@
                     <div class="menu-item {{Request::is('pacientes') || Request::is('paciente/*') ? 'active' : ''}}">
                         <a href="{{url('pacientes')}}" class="menu-link">
                             <div class="menu-text">Pacientes</div>
+                        </a>
+                    </div>
+                    <div class="menu-item {{Request::is('bitacoras') || Request::is('bitacora/*') ? 'active' : ''}}">
+                        <a href="{{url('bitacoras')}}" class="menu-link">
+                            <div class="menu-text">Bitácora</div>
                         </a>
                     </div>
                 </div>

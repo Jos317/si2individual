@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class Historial extends Model
@@ -16,22 +17,6 @@ class Historial extends Model
 
     public function paciente(){
         return $this->belongsTo('App\Models\Paciente','idpaciente','id');
-    }
-
-    public static function store_historial(Request $request){
-        $historial = new Historial();
-        if($request->hasFile('documento')){
-            $extension = $request->documento->extension();
-            if($extension == "docx" || $extension == "pdf"){
-                $nombre = round(microtime(true)) . '.' . $extension;
-                Storage::disk('public')->putFileAs('historial', $request->documento, $nombre);
-                $path = 'storage/historial/' . $nombre;
-                $historial->documento = $path;
-            }
-        }
-        $historial->nota = $request->nota;
-        $historial->idpaciente = $request->idpaciente;
-        $historial->save();
     }
 
     public static function update_historial(Request $request)
@@ -51,6 +36,14 @@ class Historial extends Model
         }
         $historial->nota = $request->nota;
         $historial->idpaciente = $request->idpaciente;
+
+        $bitacora = new Bitacora();
+        $bitacora->accion = 'Actualizó ' . $request->nota;
+        $bitacora->tabla = 'Historial';
+        $bitacora->idusuario = Auth::user()->id;
+        $bitacora->idpaciente = $request->idpaciente;
+        $bitacora->save();
+
         $historial->update();
     }
 }

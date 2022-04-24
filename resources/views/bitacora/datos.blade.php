@@ -3,10 +3,10 @@
         <thead>
             <tr>
                 <th style="text-align: center">#</th>
+                <th style="text-align: center">Médico</th>
+                <th style="text-align: center">Paciente</th>
                 <th style="text-align: center">Acción</th>
                 <th style="text-align: center">Tabla</th>
-                <th style="text-align: center">Nombre del implicado</th>
-                <th style="text-align: center">Usuario</th>
                 <th style="text-align: center">Fecha y Hora</th>
             </tr>
         </thead>
@@ -14,10 +14,18 @@
             @foreach ($bitacoras as $item)
                 <tr>
                     <td>{{$item->id}}</td>
+                    @if($item->idusuario)
+                        <td>{{$item->user->nombre}}</td>
+                    @else
+                        <td></td>
+                    @endif
+                    @if($item->idpaciente)
+                        <td>{{$item->paciente->nombre}}</td>
+                    @else
+                        <td></td>
+                    @endif
                     <td>{{$item->accion}}</td>
                     <td>{{$item->tabla}}</td>
-                    <td>{{$item->nombre_implicado}}</td>
-                    <td>{{$item->user_nombre}}</td>
                     <td>{{$item->created_at}}</td>
                     {{-- <td style="text-align: center">
                         @if ($item->estado == 'activo')
@@ -37,5 +45,5 @@
     </table>
 </div>
 <div>
-    {{ $consultas->links() }}
+    {{ $bitacoras->links() }}
 </div>

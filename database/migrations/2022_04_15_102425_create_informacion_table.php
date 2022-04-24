@@ -15,13 +15,13 @@ class CreateInformacionTable extends Migration
     {
         Schema::create('informacion', function (Blueprint $table) {
             $table->id();
-            $table->string('peso',3);
-            $table->decimal('estatura',3,2);
-            $table->string('frecu_cardi',3);
-            $table->string('frecu_respi',2);
-            $table->string('temperatura',2);
-            $table->string('sistolica',3);
-            $table->string('diastolica',2);
+            $table->string('peso',3)->default('');
+            $table->string('estatura',4)->default('');
+            $table->string('frecu_cardi',3)->default('');
+            $table->string('frecu_respi',2)->default('');
+            $table->string('temperatura',2)->default('');
+            $table->string('sistolica',3)->default('');
+            $table->string('diastolica',3)->default('');
             $table->unsignedBigInteger('idconsulta');
             $table->foreign('idconsulta')->references('id')->on('consulta');
         });

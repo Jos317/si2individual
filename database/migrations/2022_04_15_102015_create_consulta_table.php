@@ -16,10 +16,11 @@ class CreateConsultaTable extends Migration
         Schema::create('consulta', function (Blueprint $table) {
             $table->id();
             $table->string('motivo');
-            $table->date('fecha_registro');
-            $table->time('hora_inicio');
-            $table->time('hora_fin');
+            $table->dateTime('inicio');
+            $table->dateTime('fin');
             $table->tinyInteger('estado')->default(0);
+            $table->tinyInteger('estado_d')->default(0);
+            $table->tinyInteger('estado_i')->default(0);
             $table->unsignedBigInteger('idusuario');
             $table->foreign('idusuario')->references('id')->on('users');
             $table->unsignedBigInteger('idpaciente');

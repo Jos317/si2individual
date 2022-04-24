@@ -16,9 +16,15 @@
         <link href="{{asset('asset/plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.css')}}" rel="stylesheet"/>
         <link href="{{asset('asset/plugins/gritter/css/jquery.gritter.css')}}" rel="stylesheet"/>
 
+        
+        {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> --}}
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+        {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> --}}
+        
 
         <style>
             .file-upload-btn {
@@ -187,6 +193,11 @@
         <script src="{{asset('asset/plugins/jvectormap-next/jquery-jvectormap-world-mill.js')}}"></script>
         <script src="{{asset('asset/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.js')}}"></script>
         <script src="{{asset('asset/js/demo/dashboard.js')}}"></script>
+
+        {{-- <script src="{{asset('asset/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js')}}"></script>
+        <script src="{{asset('asset/ajax/libs/moment.js/2.18.1/moment.min.js')}}"></script>
+        <script src="{{asset('asset/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js')}}"></script> --}}
+
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
             @if(Session::has('message'))

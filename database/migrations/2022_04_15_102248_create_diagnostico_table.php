@@ -16,9 +16,10 @@ class CreateDiagnosticoTable extends Migration
         Schema::create('diagnostico', function (Blueprint $table) {
             $table->id();
             $table->string('documento');
-            $table->date('fecha_registro');
+            $table->string('nota');
             $table->unsignedBigInteger('idconsulta');
             $table->foreign('idconsulta')->references('id')->on('consulta');
+            $table->timestamps();
         });
     }
 

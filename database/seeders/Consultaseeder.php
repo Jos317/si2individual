@@ -17,9 +17,8 @@ class Consultaseeder extends Seeder
         DB::table('consulta')->insert([
             [
                 'motivo' => 'fiebre por 5 dias seguidos y tos interminable',
-                'fecha_registro' => '2022-04-20',
-                'hora_inicio' => '18:00:00',
-                'hora_fin' => '19:00:00',
+                'inicio' => '2022-04-20 18:00:00',
+                'fin' => '2022-04-20 19:00:00',
                 'idpaciente' => 1,
                 'idusuario' => 1,
             ]   

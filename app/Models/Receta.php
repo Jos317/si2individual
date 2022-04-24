@@ -10,22 +10,19 @@ class Receta extends Model
 {
     use HasFactory;
     protected $table = 'receta';
-    protected $fillable = ['conclusion', 'idconsulta'];
+    protected $fillable = ['medicamento', 'tratamiento', 'conclusion', 'idconsulta'];
     public $timestamps = true;
 
     public function consulta(){
         return $this->belongsTo('App\Models\Consulta','idconsulta','id');
     }
 
-    public function tratamiento()
-    {
-        return $this->hasMany('App\Models\Tratamiento','idreceta','id');
-    }
-
     public static function store_receta(Request $request){
         // dd(json_decode(json_encode($request->conclusion)));
         $receta = new Receta();
-        $receta->conclusion = $request->conclusion??'';
+        $receta->medicamento = $request->medicamento??'';
+        $receta->tratamiento = $request->tratamiento??'';
+        $receta->conclusion = $request->conclusion;
         $receta->idconsulta = $request->idconsulta;
 
         $consulta = Consulta::findOrFail($request->idconsulta);
@@ -37,6 +34,8 @@ class Receta extends Model
 
     public static function update_receta(Request $request){
         $receta = Receta::findOrFail($request->idconsulta);
+        $receta->medicamento = $request->medicamento??'';
+        $receta->tratamiento = $request->tratamiento??'';
         $receta->conclusion = $request->conclusion;
         $receta->idconsulta = $request->idconsulta;
         $receta->update();

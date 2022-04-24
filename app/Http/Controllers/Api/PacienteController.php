@@ -21,8 +21,7 @@ class PacienteController extends Controller
 
             $bitacora = new Bitacora();
             $bitacora->accion = 'Inició Sesión';
-            $bitacora->nombre_implicado = $paciente->nombre;
-            $bitacora->idusuario = $paciente->id;
+            $bitacora->idpaciente = $paciente->id;
             $bitacora->save();
 
             return $this->respondWithToken($token, $paciente);

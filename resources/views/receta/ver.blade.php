@@ -21,7 +21,7 @@
     </div>
     
     <div class="panel-body">
-        <input type="hidden" name="idconsulta" value="{{$receta->idconsulta}}">
+        <input type="hidden" name="id" id="id"value="{{$receta->id}}">
         @if ($errors->any())
         <div class="form-group row">
             <div class="col-12 col-md-12 col-lg-12 col-xl-12">
@@ -35,6 +35,16 @@
             </div>
         </div>
         @endif
+        <div class="form-group row">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
+                <label class="form-label">Medicamentos: </label>
+                <textarea name="medicamento" id="medicamento" disabled>{!!$receta->medicamento!!}</textarea>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
+                <label class="form-label">Tratamiento: </label>
+                <textarea name="tratamiento" id="tratamiento" disabled>{!!$receta->tratamiento!!}</textarea>
+            </div>
+        </div>
         <div class="form-group row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-2">
                 <label class="form-label">Conclusion: </label>
@@ -58,6 +68,8 @@
 @push('scripts')
 <script src="//cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
 <script>
+    CKEDITOR.replace('medicamento');
+    CKEDITOR.replace('tratamiento');
     CKEDITOR.replace('conclusion');
     CKEDITOR.config.height = 100;
 </script>

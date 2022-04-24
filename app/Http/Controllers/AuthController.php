@@ -35,6 +35,12 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
+
+        $bitacora = new Bitacora();
+        $bitacora->accion = 'Salió Sesión';
+        $bitacora->idusuario = Auth::user()->id;
+        $bitacora->save();
+
         Auth::logout();
 
         // $request->session()->invalidate();

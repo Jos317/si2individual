@@ -61,6 +61,11 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Bitacora','idusuario','id');
     }
 
+    public function especialidad()
+    {
+        return $this->hasMany('App\Models\Especialidad','idusuario','id');
+    }
+
     public static function store_medico(Request $request)
     {
         $medico = new User();

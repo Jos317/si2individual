@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Especialidad;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -89,6 +90,52 @@ class MedicoController extends Controller
         } catch (\Exception $e) {
             DB::rollBack();
             return response()->json(['mensaje' => $e->getMessage()], 500);
+        }
+    }
+
+    public function index_especialidad($id)
+    {
+        $especialidades = Especialidad::where('idusuario', $id)->orderBy('id', 'DESC')->paginate(10);
+        return view('especialidad.index', compact('especialidades'));
+    }
+
+    public function create_especialidad()
+    {
+        return view('especialidad.create');
+    }
+
+    public function store_especialidad(Request $request)
+    {
+        // $this->storeValidator($request->all())->validate();
+        
+        try {
+            DB::beginTransaction();
+            Especialidad::store_especialidad($request);
+            DB::commit();
+            return redirect()->to('medicos')->with('message', 'Especialidad agregado exitosamente!');
+        } catch (\Exception $e) {
+            DB::rollback();
+            return back()->with(['error' => $e->getMessage()]);
+        }
+    }
+
+    public function edit_especialidad($id)
+    {
+        $especialidad = Especialidad::find($id);
+        return view('especialidad.edit', compact('especialidad'));
+    }
+
+    public function update_especialidad(Request $request)
+    {
+        // $this->updateValidator($request->all())->validate();
+        try {
+            DB::beginTransaction();
+            Especialidad::update_especialidad($request);
+            DB::commit();
+            return redirect('medicos')->with(['message' => 'Especialidad actualizado exitosamente!!']);
+        } catch (\Exception $e) {
+            DB::rollback();
+            return back()->with(['error' => $e->getMessage()]);
         }
     }
 }

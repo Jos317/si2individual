@@ -10,7 +10,7 @@ class Consulta extends Model
 {
     use HasFactory;
     protected $table = 'consulta';
-    protected $fillable = ['motivo', 'fecha_registro', 'hora_inicio', 'hora_fin', 'idusuario','idpaciente'];
+    protected $fillable = ['motivo', 'inicio', 'fin', 'idusuario','idpaciente'];
     public $timestamps = false;
 
     public function receta()
@@ -26,12 +26,21 @@ class Consulta extends Model
         return $this->belongsTo('App\Models\Paciente','idpaciente','id');
     }
 
+    public function informacion()
+    {
+        return $this->hasOne('App\Models\Informacion','idconsulta','id');
+    }
+
+    public function diagnostico()
+    {
+        return $this->hasMany('App\Models\Diagnostico','idconsulta','id');
+    }
+
     public static function store_consulta(Request $request){
         $consulta = new Consulta();
         $consulta->motivo = $request->motivo;
-        $consulta->fecha_registro = $request->fecha_registro;
-        $consulta->hora_inicio = $request->hora_inicio;
-        $consulta->hora_fin = $request->hora_fin;
+        $consulta->inicio = $request->inicio;
+        $consulta->fin = $request->fin;
         $consulta->idusuario = $request->idusuario; 
         $consulta->idpaciente= $request->idpaciente;
         $consulta->save();
@@ -40,9 +49,8 @@ class Consulta extends Model
     public static function update_consulta(Request $request){
         $consulta = Consulta::findOrFail($request->id);
         $consulta->motivo = $request->motivo;
-        $consulta->fecha_registro = $request->fecha_registro;
-        $consulta->hora_inicio = $request->hora_inicio;
-        $consulta->hora_fin = $request->hora_fin;
+        $consulta->inicio = $request->inicio;
+        $consulta->fin = $request->fin;
         $consulta->idusuario = $request->idusuario; 
         $consulta->idpaciente= $request->idpaciente;
         $consulta->update();

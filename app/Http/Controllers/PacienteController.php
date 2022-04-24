@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Consulta;
 use App\Models\Infoadicional;
 use App\Models\Paciente;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -13,7 +15,8 @@ class PacienteController extends Controller
 {
     public function index()
     {
-        $pacientes = Paciente::orderBy('id', 'DESC')->paginate(10);
+        $consulta = Consulta::where('idusuario', Auth::user()->id)->first();
+        $pacientes = Paciente::where('id', $consulta->idpaciente)->orderBy('id', 'DESC')->paginate(10);
         return view('paciente.index', compact('pacientes'));
     }
 
@@ -101,7 +104,8 @@ class PacienteController extends Controller
 
     public function ver($id)
     {
-        $infoadicional = Infoadicional::where('id', $id)->first();
+        $infoadicional = Infoadicional::where('idpaciente', $id)->first();
+        // dd(json_decode(json_encode($infoadicional)));
         return view('infoadicional.ver', compact('infoadicional'));
     }
 

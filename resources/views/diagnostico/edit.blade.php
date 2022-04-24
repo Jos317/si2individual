@@ -3,7 +3,7 @@
 @section('content')
 <ol class="breadcrumb float-xl-end">
     <li class="breadcrumb-item"><a href="{{url('consultas')}}">Consultas</a></li>
-    <li class="breadcrumb-item active">Receta</li>
+    <li class="breadcrumb-item active">Diagnóstico</li>
     <li class="breadcrumb-item active">Editar</li>
 </ol>
 
@@ -17,11 +17,11 @@
 <div class="panel panel-inverse">
 
     <div class="panel-heading">
-        <h4 class="panel-title">Editando Receta</h4>
+        <h4 class="panel-title">Editando Diagnóstico</h4>
     </div>
     
     <div class="panel-body">
-        <form action="{{url('receta/update')}}" method="POST" enctype="multipart/form-data">
+        <form action="{{url('diagnostico/update')}}" method="POST" enctype="multipart/form-data">
             @csrf
             @if ($errors->any())
             <div class="form-group row">
@@ -36,21 +36,17 @@
                 </div>
             </div>
             @endif
-            <input type="hidden" name="idconsulta" id="idconsulta" value="{{$receta->idconsulta}}">
+            <input type="hidden" name="id" id="id" value="{{$diagnostico->id}}">
+            <input type="hidden" name="idconsulta" id="idconsulta" value="{{$diagnostico->idconsulta}}">
             <div class="form-group row">
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
-                    <label class="form-label">Medicamentos: </label>
-                    <textarea name="medicamento" id="medicamento">{!!$receta->medicamento!!}</textarea>
+                    <label class="form-label">Documento: <span style="color: red">*</span></label>
+                    <input type="file" class="form-control" name="documento" id="documento" value="{{$diagnostico->documento}}" alt="Click aquí para subir" 
+                    title="Click aquí para subir" required>
                 </div>
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
-                    <label class="form-label">Tratamiento: </label>
-                    <textarea name="tratamiento" id="tratamiento">{!!$receta->tratamiento!!}</textarea>
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-2">
-                    <label class="form-label">Conclusion: <span style="color: red">*</span></label>
-                    <textarea name="conclusion" id="conclusion" required>{!!$receta->conclusion!!}</textarea>
+                    <label class="form-label">Nombre del documento: <span style="color: red">*</span></label>
+                    <input type="text" class="form-control" name="nota" id="nota" placeholder="Nombre..." value="{{$diagnostico->nota}}" required>
                 </div>
             </div>
             <div class="form-group row">
@@ -67,11 +63,6 @@
 </div>
 @endsection
 @push('scripts')
-<script src="//cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
 <script>
-    CKEDITOR.replace('medicamento');
-    CKEDITOR.replace('tratamiento');
-    CKEDITOR.replace('conclusion');
-    CKEDITOR.config.height = 100;
 </script>
 @endpush

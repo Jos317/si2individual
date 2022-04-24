@@ -18,14 +18,14 @@ class Especialidad extends Model
         return $this->belongsTo('App\Models\User','idusuario','id');
     }
 
-    public static function store(Request $request){
+    public static function store_especialidad(Request $request){
         $especialidad = new Especialidad();
         $especialidad->nombre = $request->nombre;
         $especialidad->idusuario = Auth::user()->id;
         $especialidad->save();
     }
 
-    public static function actualizar(Request $request){
+    public static function update_especialidad(Request $request){
         $especialidad = Especialidad::findOrFail($request->id);
         $especialidad->nombre = $request->nombre;
         $especialidad->idusuario = Auth::user()->id;

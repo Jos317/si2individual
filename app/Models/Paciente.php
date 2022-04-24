@@ -14,8 +14,8 @@ class Paciente extends Authenticatable implements JWTSubject
 {
     use HasFactory;
     protected $table = 'paciente';
-    protected $fillable = ['nombre', 'apellido', 'ci', 'direccion', 'telefono', 'sexo', 'fecha_nac', 'imagen', 'email', 'password', 'estado'];
-    public $timestamps = false;
+    protected $fillable = ['nombre', 'apellido', 'ci', 'direccion', 'telefono', 'sexo', 'fecha_nac', 'imagen', 'email', 'password', 'estado', 'created_at', 'updated_at'];
+    public $timestamps = true;
 
     /**
      * The attributes that should be hidden for serialization.
@@ -39,6 +39,11 @@ class Paciente extends Authenticatable implements JWTSubject
     public function consulta()
     {
         return $this->hasMany('App\Models\Consulta','idpaciente','id');
+    }
+
+    public function bitacora()
+    {
+        return $this->hasMany('App\Models\Bitacora','idpaciente','id');
     }
 
     public static function store_paciente(Request $request){
