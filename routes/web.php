@@ -31,6 +31,7 @@ Route::post('login', [AuthController::class, 'login']);
 Route::middleware(['auth'])->group(function () {
     Route::get('logout', [AuthController::class, 'logout']);
     Route::get('dashboard', [DashboardController::class, 'index']);
+    Route::get('prueba-pusher', [DashboardController::class, 'prueba_pusher']);
 
     Route::get('medicos', [MedicoController::class, 'index']);
     Route::get('medico/create', [MedicoController::class, 'create']);

@@ -236,6 +236,37 @@
                     toastr.warning("{{ session('warning') }}");
             @endif
         </script>
+        <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+        <script>
+      
+            // Enable pusher logging - don't include this in production
+            Pusher.logToConsole = true;
+        
+            var pusher = new Pusher('72febab278198d502232', {
+                cluster: 'us2'
+            });
+        
+            var channel = pusher.subscribe('my-channel');
+            channel.bind('my-event', function(data) {
+                // alert(JSON.stringify(data));
+                handleDashboardGritterNotification(data[0].nombre, data[0].email, `/${data[0].imagen}`)
+            });
+
+            var handleDashboardGritterNotification = function (title, text, image) {
+                setTimeout(function () {
+                    $
+                        .gritter
+                        .add({
+                            title: title,
+                            text: text,
+                            image: image,
+                            sticky: true,
+                            time: '',
+                            class_name: 'my-sticky-class'
+                        });
+                }, 1000);
+            };
+        </script>
         @stack('scripts')
 
         {{-- <script src="{{asset('cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js')}}"></script> --}}
