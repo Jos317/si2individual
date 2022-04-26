@@ -6,6 +6,10 @@ use App\Http\Controllers\ConsultaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HistorialController;
 use App\Http\Controllers\MedicoController;
+use App\Http\Controllers\Paciente\ConsultaController as PacienteConsultaController;
+use App\Http\Controllers\Paciente\DashboardController as PacienteDashboardController;
+use App\Http\Controllers\Paciente\HistorialController as PacienteHistorialController;
+use App\Http\Controllers\Paciente\PacienteController as PacientePacienteController;
 use App\Http\Controllers\PacienteController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +31,9 @@ Route::get('/', function () {
 
 Route::get('login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('login', [AuthController::class, 'login']);
+
+Route::get('loginPaciente', [AuthController::class, 'showLoginPaciente']);
+Route::post('loginPaciente', [AuthController::class, 'loginPaciente']);
 
 Route::middleware(['auth'])->group(function () {
     Route::get('logout', [AuthController::class, 'logout']);
@@ -81,6 +88,30 @@ Route::middleware(['auth'])->group(function () {
     Route::post('diagnostico/update', [ConsultaController::class, 'update_diagnostico']);
 
     Route::get('bitacoras', [BitacoraController::class, 'index']);
+});
 
-    
+Route::middleware(['auth:paciente'])->group(function () {
+    Route::get('logoutP', [AuthController::class, 'logoutP']);
+    Route::get('dashboardP', [PacienteDashboardController::class, 'index']);
+    // Route::get('prueba-pusher', [DashboardController::class, 'prueba_pusher']);
+
+    Route::get('pacientesP', [PacientePacienteController::class, 'index']);
+    Route::get('pacienteP/edit/{id}', [PacientePacienteController::class, 'edit']);
+    Route::post('pacienteP/update', [PacientePacienteController::class, 'update']);
+    // Route::get('paciente/anadir/{id}', [PacienteController::class, 'anadir']);
+    Route::get('pacienteP/ver/{id}', [PacientePacienteController::class, 'ver']);
+    Route::post('pacienteP/store_infoadicional', [PacientePacienteController::class, 'store_adicional']);
+    Route::get('pacienteP/edit_info/{id}', [PacientePacienteController::class, 'edit_adicional']);
+    Route::post('pacienteP/update_info', [PacientePacienteController::class, 'update_adicional']);
+
+    Route::get('historialesP', [PacienteHistorialController::class, 'index']);
+    Route::get('historialP/download/{id}', [PacienteHistorialController::class, 'download']);
+
+    Route::get('consultasP', [PacienteConsultaController::class, 'index']);
+    Route::get('recetaP/ver/{id}', [PacienteConsultaController::class, 'ver']);
+    Route::get('informacionP/ver/{id}', [PacienteConsultaController::class, 'ver_informacion']);
+    Route::get('diagnosticoP/ver/{id}', [PacienteConsultaController::class, 'index_diagnostico']);
+    Route::get('diagnosticoP/download/{id}', [PacienteConsultaController::class, 'download']);
+
+    // Route::get('bitacoras', [BitacoraController::class, 'index']);
 });

@@ -8,11 +8,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class Paciente extends Authenticatable implements JWTSubject
 {
-    use HasFactory;
+    use HasApiTokens, HasFactory, Notifiable;
     protected $table = 'paciente';
     protected $fillable = ['nombre', 'apellido', 'ci', 'direccion', 'telefono', 'sexo', 'fecha_nac', 'imagen', 'email', 'password', 'estado', 'created_at', 'updated_at'];
     public $timestamps = true;

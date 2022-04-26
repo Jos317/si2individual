@@ -19,24 +19,16 @@
                     <td>{{$item->fin}}</td>
                     <td>{{$item->paciente_nombre}}</td>
                     <td style="text-align: center">
-                        @if ($item->estado == 0)
-                            <a class="btn btn-sm btn-primary me-1" href="{{url('consulta/anadir/'.$item->id)}}">
-                                <i class="ion-md-clipboard"></i> Añadir Receta
-                            </a>
-                        @else
-                            <a class="btn btn-sm btn-yellow me-1" href="{{url('receta/ver/'.$item->id)}}">
+                        @if ($item->estado == 1)
+                            <a class="btn btn-sm btn-yellow me-1" href="{{url('recetaP/ver/'.$item->id)}}">
                                 <i class="ion-md-eye"></i> Ver Receta
                             </a>
                         @endif
-                        <a class="btn btn-sm btn-info me-1" href="{{url('diagnostico/ver/'.$item->id)}}">
+                        <a class="btn btn-sm btn-info me-1" href="{{url('diagnosticoP/ver/'.$item->id)}}">
                             <i class="ion-md-clipboard"></i> Ver Diagnóstico
                         </a>
-                        @if ($item->estado_i == 0)
-                            <a class="btn btn-sm btn-pink me-1" href="{{url('informacion/anadir/'.$item->id)}}">
-                                <i class="ion-md-clipboard"></i> Añadir Información del paciente
-                            </a>
-                        @else
-                            <a class="btn btn-sm btn-warning me-1" href="{{url('informacion/ver/'.$item->id)}}">
+                        @if ($item->estado_i == 1)
+                            <a class="btn btn-sm btn-warning me-1" href="{{url('informacionP/ver/'.$item->id)}}">
                                 <i class="ion-md-eye"></i> Ver Información del paciente
                             </a>
                         @endif

@@ -141,9 +141,9 @@
 
         <div id="app" class="app app-header-fixed app-sidebar-fixed ">
 
-            @include('layouts.headerPrincipal')
+            @include('layoutPaciente.layouts.headerPrincipal')
 
-            @include('layouts.sidebarPrincipal')
+            @include('layoutPaciente.layouts.sidebarPrincipal')
 
             <div class="app-sidebar-bg"></div>
             <div class="app-sidebar-mobile-backdrop">
@@ -151,7 +151,7 @@
             </div>
 
             <div id="content" class="app-content">
-                @yield('content')
+                @yield('content_paciente')
             </div>
 
             @include('layoutPaciente.layouts.temasPrincipal')
