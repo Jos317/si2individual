@@ -67,7 +67,7 @@ class AuthController extends Controller
             $bitacora->idpaciente = Auth::guard('paciente')->user()->id;
             $bitacora->save();
 
-            return redirect()->guest('dashboardP');
+            return redirect()->intended('dashboardP');
         }
 
         return back()->withErrors([
