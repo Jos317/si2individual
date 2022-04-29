@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\MedicoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\PacienteController;
@@ -23,4 +24,5 @@ Route::post('login', [PacienteController::class, 'login']);
 
 Route::group(['middleware' => ['jwt.verify']], function (){
     Route::get('obtenerPaciente', [PacienteController::class, 'obtenerPaciente']);
+    Route::get('obtenerMedicos', [MedicoController::class, 'obtenerMedicos']);
 });
