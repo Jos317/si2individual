@@ -26,7 +26,17 @@ class Userseeder extends Seeder
                 'password' => Hash::make('12345'),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
-            ]   
+            ],
+            [
+                'nombre' => 'Fabricio',
+                'ci' => '13155901',
+                'direccion' => 'Santa Cruz de la Sierra/1er anillo',
+                'telefono' => '73314329',
+                'email' => 'fabricio@gmail.com',
+                'password' => Hash::make('12345'),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ]     
         ]);
     }
 }

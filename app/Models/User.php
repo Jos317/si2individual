@@ -73,7 +73,6 @@ class User extends Authenticatable
         $medico->ci = $request->ci;
         $medico->direccion = $request->direccion;
         $medico->telefono = $request->telefono;
-        $medico->biografia = $request->biografia ?? '';
         $medico->email = $request->email;
         $medico->password = Hash::make($request->password);
         if($request->hasFile('imagen')){
@@ -95,7 +94,6 @@ class User extends Authenticatable
         $medico->ci = $request->ci;
         $medico->direccion = $request->direccion;
         $medico->telefono = $request->telefono;
-        $medico->biografia = $request->biografia ?? '';
         $medico->email = $request->email;
         if($request->password != "")
         {

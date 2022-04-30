@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class Infoadicional extends Model
 {
@@ -31,6 +32,13 @@ class Infoadicional extends Model
         $paciente->estado = 1;
         $paciente->update();
 
+        $bitacora = new Bitacora();
+        $bitacora->accion = 'Creó';
+        $bitacora->tabla = 'Información Adicional';
+        $bitacora->idusuario = Auth::user()->id;
+        $bitacora->idpaciente = $request->idpaciente;
+        $bitacora->save();
+
         $info_adicional->save();
     }
 
@@ -42,7 +50,15 @@ class Infoadicional extends Model
         $info_adicional->ante_pato = $request->ante_pato ?? '';
         $info_adicional->ante_psiqui = $request->ante_psiqui ?? ''; 
         $info_adicional->dieta_nutri = $request->dieta_nutri ?? '';
-        $info_adicional->idpaciente = $request->idpaciente;
+        $info_adicional->idpaciente = $request->idpaciente; 
+
+        $bitacora = new Bitacora();
+        $bitacora->accion = 'Actualizó';
+        $bitacora->tabla = 'Información Adicional';
+        $bitacora->idusuario = Auth::user()->id;
+        $bitacora->idpaciente = $request->idpaciente;
+        $bitacora->save();
+
         $info_adicional->update();
     }
 

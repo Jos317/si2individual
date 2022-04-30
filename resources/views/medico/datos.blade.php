@@ -43,10 +43,10 @@
                             <i class="fas fa-pencil-alt fa-fw"></i> Editar
                         </a>
 
-                        <a class="btn btn-sm btn-danger me-1" onclick="eliminar({{$item->id}})">
+                        {{-- <a class="btn btn-sm btn-danger me-1" onclick="eliminar({{$item->id}})">
                             <i class="fa fa-trash fa-fw" aria-hidden="true"></i>
                             Eliminar
-                        </a>
+                        </a> --}}
 
                         <a class="btn btn-sm btn-yellow me-1" href="{{url('especialidad/index/'.$item->id)}}">
                             <i class="ion-md-eye" aria-hidden="true"></i>

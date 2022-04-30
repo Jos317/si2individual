@@ -36,6 +36,7 @@
                 </div>
             </div>
             @endif
+            <input type="hidden" name="id" id="id" value="{{$receta->id}}">
             <input type="hidden" name="idconsulta" id="idconsulta" value="{{$receta->idconsulta}}">
             <div class="form-group row">
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">

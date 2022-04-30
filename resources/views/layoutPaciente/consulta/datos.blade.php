@@ -19,6 +19,10 @@
                     <td>{{$item->fin}}</td>
                     <td>{{$item->paciente_nombre}}</td>
                     <td style="text-align: center">
+                        <a class="btn btn-sm btn-danger me-1" onclick="eliminar({{$item->id}})">
+                            <i class="fa fa-trash fa-fw" aria-hidden="true"></i>
+                            Eliminar
+                        </a>
                         @if ($item->estado == 1)
                             <a class="btn btn-sm btn-yellow me-1" href="{{url('recetaP/ver/'.$item->id)}}">
                                 <i class="ion-md-eye"></i> Ver Receta

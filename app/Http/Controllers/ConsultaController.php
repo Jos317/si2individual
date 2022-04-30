@@ -68,10 +68,10 @@ class ConsultaController extends Controller
 
     public function update(Request $request)
     {
-        // dd(json_decode(json_encode($request->all())));
         $this->updateValidator($request->all())->validate();
         try {
             DB::beginTransaction();
+            // dd(json_decode(json_encode($request->all())));
             Receta::update_receta($request);
             DB::commit();
             return redirect('consultas')->with(['message' => 'Receta actualizado exitosamente!!']);
@@ -183,7 +183,7 @@ class ConsultaController extends Controller
 
     public function update_diagnostico(Request $request)
     {
-        // dd(json_decode(json_encode($request->all())));
+        
         // $this->updateValidator($request->all())->validate();
         try {
             DB::beginTransaction();

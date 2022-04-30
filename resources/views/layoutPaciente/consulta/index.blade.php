@@ -36,5 +36,69 @@
 @endsection
 @push('scripts')
 <script>
+    function eliminar(id) {
+        Swal.fire({
+            title: 'Estás seguro de eliminar esto?',
+            text: "No podrás revertir esto!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, eliminalo!',
+            allowOutsideClick: false,
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                $.ajax({
+                    type: "POST",
+                    url: "{{url('consultaP/eliminar')}}",
+                    data: {
+                        id: id
+                    },
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    dataType: 'JSON',
+                    success: function (response) {
+                        // console.log(response);
+                        
+                        Swal.fire({
+                            title: 'Eliminado!',
+                            text: response.mensaje,
+                            icon: 'success',
+                            showCancelButton: false,
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'Ok',
+                            allowOutsideClick: false,
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location = "{{url('consultasP')}}";
+                            }
+                        });
+                        
+                    },
+                    error: function (jqXHR, textStatus, errorThrown ) {
+                        console.log(jqXHR);
+                        console.log(textStatus);
+                        console.log(errorThrown );
+                        Swal.fire({
+                            title: 'Oops...',
+                            text: jqXHR.responseJSON.mensaje,
+                            icon: 'error',
+                            showCancelButton: false,
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'Ok',
+                            allowOutsideClick: false,
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                
+                            }
+                        });
+                    }
+                });
+            }
+        });
+        
+    }
 </script>
 @endpush

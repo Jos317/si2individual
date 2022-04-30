@@ -58,10 +58,6 @@
             </div>
             <div class="form-group row">
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
-                    <label class="form-label">Biografía: </label>
-                    <textarea name="biografia" id="biografia">{!!$medico->biografia!!}</textarea>
-                </div>
-                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
                     <label class="form-label">Imagen</label>
                     <button style="margin: 0" class="file-upload-btn" type="button"
                         onclick="$('#file-upload-inputImagen').trigger('click');">
@@ -96,13 +92,13 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="form-group row">
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
                     <label class="form-label">Email: <span style="color: red">*</span></label>
                     <input type="email" class="form-control" name="email" id="email" placeholder="Email..." value="{{$medico->email}}" required>
                 </div>
-                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
+            </div>
+            <div class="form-group row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-2">
                     <label class="form-label">Password:</label>
                     <input type="password" class="form-control" name="password" id="password" placeholder="Password...">
                 </div>
@@ -121,10 +117,7 @@
 </div>
 @endsection
 @push('scripts')
-<script src="//cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
 <script>
-    CKEDITOR.replace('biografia');
-    CKEDITOR.config.height = 100;
 </script>
 <script>
     var medico = {!! json_encode($medico) !!};

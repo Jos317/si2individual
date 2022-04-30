@@ -9,6 +9,7 @@ use App\Models\Informacion;
 use App\Models\Receta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ConsultaController extends Controller
 {
@@ -21,6 +22,21 @@ class ConsultaController extends Controller
         ->paginate(10);
 
         return view('layoutPaciente.consulta.index', compact('consultas'));
+    }
+
+    public function destroy(Request $request)
+    {
+        // dd(json_decode(json_encode($request->all())));
+        try {
+            DB::beginTransaction();
+            Consulta::eliminar($request);
+            DB::commit();
+            return response()->json(['mensaje' => 'Consulta eliminado exitosamente'], 200);
+        } catch (\Exception $e) {
+            DB::rollback();
+            return response()->json(['mensaje' => $e->getMessage()], 500);
+        }
+        
     }
 
     public function ver($id)

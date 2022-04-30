@@ -33,7 +33,7 @@ class PacienteController extends Controller
             DB::beginTransaction();
             Paciente::update_paciente($request);
             DB::commit();
-            return redirect('pacientes')->with(['message' => 'Paciente actualizado exitosamente!!']);
+            return redirect('pacientesP')->with(['message' => 'Paciente actualizado exitosamente!!']);
         } catch (\Exception $e) {
             DB::rollback();
             return back()->with(['error' => $e->getMessage()]);
@@ -83,7 +83,7 @@ class PacienteController extends Controller
             DB::beginTransaction();
             Infoadicional::store_infoadicional($request);
             DB::commit();
-            return redirect()->to('pacientes')->with('message', 'Información adicional agregado exitosamente!');
+            return redirect()->to('pacientesP')->with('message', 'Información adicional agregado exitosamente!');
         } catch (\Exception $e) {
             DB::rollback();
             return back()->with(['error' => $e->getMessage()]);
@@ -103,7 +103,7 @@ class PacienteController extends Controller
             DB::beginTransaction();
             Infoadicional::update_infoadicional($request);
             DB::commit();
-            return redirect('pacientes')->with(['message' => 'Información adicional actualizado exitosamente!!']);
+            return redirect('pacientesP')->with(['message' => 'Información adicional actualizado exitosamente!!']);
         } catch (\Exception $e) {
             DB::rollback();
             return back()->with(['error' => $e->getMessage()]);

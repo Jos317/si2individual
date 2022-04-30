@@ -61,7 +61,10 @@ class Diagnostico extends Model
 
     public static function update_diagnostico(Request $request)
     {
+        
         $diagnostico = Diagnostico::findOrFail($request->id);
+        
+        
         if($request->hasFile('documento')){
             if($diagnostico->documento){
                 Storage::disk('public')->delete($diagnostico->documento);
@@ -76,7 +79,7 @@ class Diagnostico extends Model
         }
         $diagnostico->nota = $request->nota;
         $diagnostico->idconsulta = $request->idconsulta;
-
+        
         $consulta = Consulta::where('id', $request->idconsulta)->first();
 
         $bitacora = new Bitacora();
@@ -85,7 +88,7 @@ class Diagnostico extends Model
         $bitacora->idusuario = Auth::user()->id;
         $bitacora->idpaciente = $consulta->idpaciente;
         $bitacora->save();
-
+        
         $historial = Historial::where('idpaciente', $consulta->idpaciente)->first();
         if($request->hasFile('documento')){
             if($historial->documento){
@@ -100,9 +103,9 @@ class Diagnostico extends Model
             }
         }
         $historial->nota = $request->nota;
-        $historial->idpaciente = $request->idpaciente;
+        $historial->idpaciente = $consulta->idpaciente;
         $historial->update();
-
+        
         $diagnostico->update();
     }
 }

@@ -57,7 +57,7 @@
                 {{-- <button class="btn btn-primary" type="submit">
                     Editar
                 </button> --}}
-                <a class="btn btn-sm btn-primary me-1" href="{{url('receta/edit/'.$receta->id)}}">
+                <a class="btn btn-sm btn-primary me-1" href="{{url('receta/edit/'.$receta->idconsulta)}}">
                     <i class="fas fa-pencil-alt fa-fw"></i> Editar
                 </a>
             </div>

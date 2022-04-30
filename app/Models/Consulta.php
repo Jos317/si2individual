@@ -36,7 +36,7 @@ class Consulta extends Model
         return $this->hasMany('App\Models\Diagnostico','idconsulta','id');
     }
 
-    public static function store_consulta(Request $request){
+    public static function crearConsulta(Request $request){
         $consulta = new Consulta();
         $consulta->motivo = $request->motivo;
         $consulta->inicio = $request->inicio;
@@ -46,13 +46,9 @@ class Consulta extends Model
         $consulta->save();
     }
 
-    public static function update_consulta(Request $request){
-        $consulta = Consulta::findOrFail($request->id);
-        $consulta->motivo = $request->motivo;
-        $consulta->inicio = $request->inicio;
-        $consulta->fin = $request->fin;
-        $consulta->idusuario = $request->idusuario; 
-        $consulta->idpaciente= $request->idpaciente;
-        $consulta->update();
+    public static function eliminar(Request $request)
+    {
+        $banner = Consulta::findOrFail($request->id);
+        $banner->delete();
     }
 }

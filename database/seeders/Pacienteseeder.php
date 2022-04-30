@@ -29,7 +29,20 @@ class Pacienteseeder extends Seeder
                 'password' => Hash::make('12345'),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
-            ]   
+            ],
+            [
+                'nombre' => 'Gustavo',
+                'apellido' => 'Coronado',
+                'ci' => '17362190',
+                'telefono' => '71036652',
+                'direccion' => 'Santa Cruz de la Sierra/Yapacaní',
+                'sexo' => 'M',
+                'fecha_nac' => '2000-11-23',
+                'email' => 'gustavo@gmail.com',
+                'password' => Hash::make('12345'),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ]     
         ]);
     }
 }

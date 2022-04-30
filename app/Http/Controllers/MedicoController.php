@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Especialidad;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -13,7 +14,7 @@ class MedicoController extends Controller
 {
     public function index()
     {
-        $medicos = User::where('estado', 0)->orderBy('id', 'DESC')->paginate(10);
+        $medicos = User::where('estado', 0)->where('id', Auth::user()->id)->paginate(10);
         return view('medico.index', compact('medicos'));
     }
 

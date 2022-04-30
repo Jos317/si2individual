@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class Informacion extends Model
 {
@@ -32,6 +33,13 @@ class Informacion extends Model
         $consulta->estado_i = 1;
         $consulta->update();
 
+        $bitacora = new Bitacora();
+        $bitacora->accion = 'Creó';
+        $bitacora->tabla = 'Información';
+        $bitacora->idusuario = Auth::user()->id;
+        $bitacora->idpaciente = $consulta->idpaciente;
+        $bitacora->save();
+
         $informacion->save();
     }
 
@@ -45,6 +53,16 @@ class Informacion extends Model
         $informacion->sistolica = $request->sistolica ?? '';
         $informacion->diastolica = $request->diastolica ?? '';
         $informacion->idconsulta = $request->idconsulta;
+
+        $consulta = Consulta::findOrFail($request->idconsulta);
+
+        $bitacora = new Bitacora();
+        $bitacora->accion = 'Actualizó';
+        $bitacora->tabla = 'Información';
+        $bitacora->idusuario = Auth::user()->id;
+        $bitacora->idpaciente = $consulta->idpaciente;
+        $bitacora->save();
+
         $informacion->update();
     }
 }

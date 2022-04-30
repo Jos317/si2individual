@@ -108,6 +108,7 @@ Route::middleware(['auth:paciente'])->group(function () {
     Route::get('historialP/download/{id}', [PacienteHistorialController::class, 'download']);
 
     Route::get('consultasP', [PacienteConsultaController::class, 'index']);
+    Route::post('consultaP/eliminar', [PacienteConsultaController::class, 'destroy']);
     Route::get('recetaP/ver/{id}', [PacienteConsultaController::class, 'ver']);
     Route::get('informacionP/ver/{id}', [PacienteConsultaController::class, 'ver_informacion']);
     Route::get('diagnosticoP/ver/{id}', [PacienteConsultaController::class, 'index_diagnostico']);

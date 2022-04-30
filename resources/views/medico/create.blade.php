@@ -57,10 +57,6 @@
             </div>
             <div class="form-group row">
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
-                    <label class="form-label">Biografía: </label>
-                    <textarea name="biografia" id="biografia">{{old('biografia')}}</textarea>
-                </div>
-                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
                     <label>Imagen:</label>
                     <div class="image-upload-wrap" id="image-upload-wrap">
                         <input class="file-upload-input" type='file' id="file-upload-input" name="imagen"
@@ -78,13 +74,13 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="form-group row">
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
                     <label class="form-label">Email: <span style="color: red">*</span></label>
                     <input type="email" class="form-control" name="email" id="email" placeholder="Email..." value="{{old('email')}}" required>
                 </div>
-                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2">
+            </div>
+            <div class="form-group row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-2">
                     <label class="form-label">Password: <span style="color: red">*</span></label>
                     <input type="password" class="form-control" name="password" id="password" placeholder="Password..." required>
                 </div>
@@ -103,10 +99,7 @@
 </div>
 @endsection
 @push('scripts')
-<script src="//cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
 <script>
-    CKEDITOR.replace('biografia');
-    CKEDITOR.config.height = 100;
 </script>
 <script>
     readURL = function (input) {

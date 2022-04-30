@@ -11,7 +11,7 @@ class BitacoraController extends Controller
 {
     public function index()
     {
-        $bitacoras = Bitacora::with('user')->with('paciente')
+        $bitacoras = Bitacora::where('idusuario', Auth::user()->id)->with('user')->with('paciente')
         ->orderBy('id', 'DESC')
         ->paginate(10);
 

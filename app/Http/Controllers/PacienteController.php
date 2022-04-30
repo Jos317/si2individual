@@ -15,8 +15,13 @@ class PacienteController extends Controller
 {
     public function index()
     {
-        $consulta = Consulta::where('idusuario', Auth::user()->id)->first();
-        $pacientes = Paciente::where('id', $consulta->idpaciente)->orderBy('id', 'DESC')->paginate(10);
+        $consultas = Consulta::where('idusuario', Auth::user()->id)->select('idpaciente')->get();
+        $array = [];
+        foreach ($consultas as $consulta) {
+            array_push($array, $consulta["idpaciente"]);
+        }
+        $pacientes = Paciente::whereIn('id', $array)->orderBy('id', 'DESC')->paginate(10);
+        
         return view('paciente.index', compact('pacientes'));
     }
 
