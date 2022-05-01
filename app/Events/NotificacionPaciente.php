@@ -23,7 +23,7 @@ class NotificacionPaciente
 
     public function broadcastOn()
     {
-        return ['my-channel'];
+        return ['my-channel_2'];
     }
 
     public function broadcastAs()
