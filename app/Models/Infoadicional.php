@@ -32,7 +32,7 @@ class Infoadicional extends Model
         $paciente->estado = 1;
         $paciente->update();
 
-        $bitacora = new Bitacora();
+        $bitacora = new Acciones();
         $bitacora->accion = 'Creó';
         $bitacora->tabla = 'Información Adicional';
         $bitacora->idusuario = Auth::user()->id;
@@ -52,7 +52,7 @@ class Infoadicional extends Model
         $info_adicional->dieta_nutri = $request->dieta_nutri ?? '';
         $info_adicional->idpaciente = $request->idpaciente; 
 
-        $bitacora = new Bitacora();
+        $bitacora = new Acciones();
         $bitacora->accion = 'Actualizó';
         $bitacora->tabla = 'Información Adicional';
         $bitacora->idusuario = Auth::user()->id;

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Bitacora;
+use App\Models\Acciones;
 use App\Models\Paciente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -19,7 +19,7 @@ class PacienteController extends Controller
             }
             $paciente = auth('api')->user();
 
-            $bitacora = new Bitacora();
+            $bitacora = new Acciones();
             $bitacora->accion = 'Inició Sesión';
             $bitacora->idpaciente = $paciente->id;
             $bitacora->save();
@@ -38,6 +38,13 @@ class PacienteController extends Controller
 
     public function logout()
     {
+        $paciente = auth('api')->user();
+
+        $bitacora = new Acciones();
+        $bitacora->accion = 'Salió Sesión';
+        $bitacora->idpaciente = $paciente->id;
+        $bitacora->save();
+
         auth('api')->logout();
 
         return response()->json(['message' => 'Cierre de sesión exitoso'], 200);

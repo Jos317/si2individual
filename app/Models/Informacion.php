@@ -33,7 +33,7 @@ class Informacion extends Model
         $consulta->estado_i = 1;
         $consulta->update();
 
-        $bitacora = new Bitacora();
+        $bitacora = new Acciones();
         $bitacora->accion = 'Creó';
         $bitacora->tabla = 'Información';
         $bitacora->idusuario = Auth::user()->id;
@@ -56,7 +56,7 @@ class Informacion extends Model
 
         $consulta = Consulta::findOrFail($request->idconsulta);
 
-        $bitacora = new Bitacora();
+        $bitacora = new Acciones();
         $bitacora->accion = 'Actualizó';
         $bitacora->tabla = 'Información';
         $bitacora->idusuario = Auth::user()->id;

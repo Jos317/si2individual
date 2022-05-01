@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Bitacora;
+use App\Models\Acciones;
 use App\Models\Consulta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,7 +11,7 @@ class BitacoraController extends Controller
 {
     public function index()
     {
-        $bitacoras = Bitacora::where('idusuario', Auth::user()->id)->with('user')->with('paciente')
+        $bitacoras = Acciones::where('idusuario', Auth::user()->id)->with('user')->with('paciente')
         ->orderBy('id', 'DESC')
         ->paginate(10);
 

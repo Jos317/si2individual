@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Bitacora;
+use App\Models\Acciones;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,7 +25,7 @@ class AuthController extends Controller
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $request->session()->regenerate();
 
-            $bitacora = new Bitacora();
+            $bitacora = new Acciones();
             $bitacora->accion = 'Inició Sesión';
             $bitacora->idusuario = Auth::user()->id;
             $bitacora->save();
@@ -41,7 +41,7 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
 
-        $bitacora = new Bitacora();
+        $bitacora = new Acciones();
         $bitacora->accion = 'Salió Sesión';
         $bitacora->idusuario = Auth::user()->id;
         $bitacora->save();
@@ -62,7 +62,7 @@ class AuthController extends Controller
             // dd(json_decode(json_encode(Auth::guard('paciente')->user()->id)));
             $request->session()->regenerate();
 
-            $bitacora = new Bitacora();
+            $bitacora = new Acciones();
             $bitacora->accion = 'Inició Sesión';
             $bitacora->idpaciente = Auth::guard('paciente')->user()->id;
             $bitacora->save();
@@ -78,7 +78,7 @@ class AuthController extends Controller
     public function logoutP(Request $request)
     {
 
-        $bitacora = new Bitacora();
+        $bitacora = new Acciones();
         $bitacora->accion = 'Salió Sesión';
         $bitacora->idpaciente = Auth::guard('paciente')->user()->id;
         $bitacora->save();

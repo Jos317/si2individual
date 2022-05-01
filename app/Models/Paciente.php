@@ -43,9 +43,9 @@ class Paciente extends Authenticatable implements JWTSubject
         return $this->hasMany('App\Models\Consulta','idpaciente','id');
     }
 
-    public function bitacora()
+    public function accion()
     {
-        return $this->hasMany('App\Models\Bitacora','idpaciente','id');
+        return $this->hasMany('App\Models\Acciones','idpaciente','id');
     }
 
     public static function store_paciente(Request $request){

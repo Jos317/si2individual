@@ -56,9 +56,9 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Consulta','idusuario','id');
     }
 
-    public function bitacora()
+    public function accion()
     {
-        return $this->hasMany('App\Models\Bitacora','idusuario','id');
+        return $this->hasMany('App\Models\Acciones','idusuario','id');
     }
 
     public function especialidad()

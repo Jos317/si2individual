@@ -37,7 +37,7 @@ class Historial extends Model
         $historial->nota = $request->nota;
         $historial->idpaciente = $request->idpaciente;
 
-        $bitacora = new Bitacora();
+        $bitacora = new Acciones();
         $bitacora->accion = 'Actualizó ' . $request->nota;
         $bitacora->tabla = 'Historial';
         $bitacora->idusuario = Auth::user()->id;

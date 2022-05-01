@@ -31,7 +31,7 @@ class Receta extends Model
         $consulta->update();
 
 
-        $bitacora = new Bitacora();
+        $bitacora = new Acciones();
         $bitacora->accion = 'Creó';
         $bitacora->tabla = 'Receta';
         $bitacora->idusuario = Auth::user()->id;
@@ -52,7 +52,7 @@ class Receta extends Model
 
         $consulta = Consulta::findOrFail($request->idconsulta);
 
-        $bitacora = new Bitacora();
+        $bitacora = new Acciones();
         $bitacora->accion = 'Actualizó';
         $bitacora->tabla = 'Receta';
         $bitacora->idusuario = Auth::user()->id;

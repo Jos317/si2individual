@@ -35,7 +35,7 @@ class Diagnostico extends Model
 
         $consulta = Consulta::where('id', $request->idconsulta)->first();
 
-        $bitacora = new Bitacora();
+        $bitacora = new Acciones();
         $bitacora->accion = 'Creó ' . $request->nota;
         $bitacora->tabla = 'Diagnóstico';
         $bitacora->idusuario = Auth::user()->id;
@@ -82,7 +82,7 @@ class Diagnostico extends Model
         
         $consulta = Consulta::where('id', $request->idconsulta)->first();
 
-        $bitacora = new Bitacora();
+        $bitacora = new Acciones();
         $bitacora->accion = 'Actualizó ' . $request->nota;
         $bitacora->tabla = 'Historial';
         $bitacora->idusuario = Auth::user()->id;
