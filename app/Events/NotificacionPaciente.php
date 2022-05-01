@@ -10,29 +10,9 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class NotificacionEvent implements ShouldBroadcast
+class NotificacionPaciente
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-
-    // /**
-    //  * Create a new event instance.
-    //  *
-    //  * @return void
-    //  */
-    // public function __construct()
-    // {
-    //     //
-    // }
-
-    // /**
-    //  * Get the channels the event should broadcast on.
-    //  *
-    //  * @return \Illuminate\Broadcasting\Channel|array
-    //  */
-    // public function broadcastOn()
-    // {
-    //     return new PrivateChannel('channel-name');
-    // }
 
     public $message;
 
@@ -48,7 +28,7 @@ class NotificacionEvent implements ShouldBroadcast
 
     public function broadcastAs()
     {
-        return 'my-event_user_'.$this->message->idusuario;
+        return 'my-event_paciente_'.$this->message->idpaciente;
     }
 
     public function broadcastWith()

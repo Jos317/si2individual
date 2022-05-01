@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Events\NotificacionEvent;
+use App\Events\NotificacionPaciente;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
@@ -44,6 +46,10 @@ class Consulta extends Model
         $consulta->idusuario = $request->idusuario; 
         $consulta->idpaciente= auth('api')->user()->id;
         $consulta->save();
+
+        $consulta = Consulta::find($consulta->id)->load('user', 'paciente');
+        event(new NotificacionEvent($consulta));
+        event(new NotificacionPaciente($consulta));
     }
 
     public static function eliminar(Request $request)

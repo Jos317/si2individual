@@ -25,6 +25,8 @@ class DashboardController extends Controller
 
     public function prueba_pusher()
     {
-        event(new NotificacionEvent(auth()->user()));
+        // event(new NotificacionEvent(auth()->user()));
+        $consulta = Consulta::find(1)->load('user', 'paciente');
+        event(new NotificacionEvent($consulta));
     }
 }

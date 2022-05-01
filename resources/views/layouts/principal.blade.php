@@ -238,7 +238,7 @@
         </script>
         <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
         <script>
-      
+            var usuario = @json($usuario);
             // Enable pusher logging - don't include this in production
             Pusher.logToConsole = true;
         
@@ -247,9 +247,13 @@
             });
         
             var channel = pusher.subscribe('my-channel');
-            channel.bind('my-event', function(data) {
+            channel.bind(`my-event_user_${usuario.id}`, function(data) {
                 // alert(JSON.stringify(data));
-                handleDashboardGritterNotification(data[0].nombre, data[0].email, `/${data[0].imagen}`)
+                handleDashboardGritterNotification(
+                    'Nueva consulta!!', 
+                    `Se ha agendado una nueva consulta el ${data[0].inicio} por el paciente: ${data[0].paciente.nombre} ${data[0].paciente.apellido}`, 
+                    `/${data[0].paciente.imagen}`
+                );
             });
 
             var handleDashboardGritterNotification = function (title, text, image) {
