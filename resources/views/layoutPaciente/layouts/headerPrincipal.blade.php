@@ -2,10 +2,10 @@
     <div class="navbar-header">
         <a href="index.html" class="navbar-brand">
             <span class="navbar-logo">
-                <i class="ion-ios-cloud"></i>
+                <i class="ion-md-add-circle"></i>
             </span>
-            <b class="me-1">Color</b>
-            Admin</a>
+            <b class="me-1">Clínica</b>
+            Nitabara</a>
         <button
             type="button"
             class="navbar-mobile-toggler"

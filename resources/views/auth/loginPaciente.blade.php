@@ -37,7 +37,7 @@
                     <div class="brand">
                         <div class="d-flex align-items-center">
                             <span class="logo"></span>
-                            <b>Login Paciente</b>
+                            <b>Clinica Nitabara</b>
                         </div>
                     </div>
                     <div class="icon">

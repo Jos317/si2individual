@@ -2,10 +2,10 @@
     <div class="navbar-header">
         <a href="index.html" class="navbar-brand">
             <span class="navbar-logo">
-                <i class="ion-ios-cloud"></i>
+                <i class="ion-md-add-circle"></i>
             </span>
-            <b class="me-1">Color</b>
-            Admin</a>
+            <b class="me-1">Clínica</b>
+            Nitabara</a>
         <button
             type="button"
             class="navbar-mobile-toggler"
@@ -33,7 +33,7 @@
                 <span class="badge">5</span>
             </a>
             <div class="dropdown-menu media-list dropdown-menu-end">
-                <div class="dropdown-header">NOTIFICATIONS (5)</div>
+                <div class="dropdown-header">NOTIFICATIONS</div>
                 <a href="javascript:;" class="dropdown-item media">
                     <div class="media-left">
                         <i class="fa fa-bug media-object bg-gray-400"></i>
