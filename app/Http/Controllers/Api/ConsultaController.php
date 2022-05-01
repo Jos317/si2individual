@@ -43,4 +43,19 @@ class ConsultaController extends Controller
             return response()->json(['mensaje' => $e->getMessage()], 500);
         }
     }
+
+    public function eliminarConsulta(Request $request)
+    {
+        // dd(json_decode(json_encode($request->all())));
+        try {
+            DB::beginTransaction();
+            Consulta::eliminarMovil($request);
+            DB::commit();
+            return response()->json(['mensaje' => 'Consulta eliminado exitosamente'], 200);
+        } catch (\Exception $e) {
+            DB::rollback();
+            return response()->json(['mensaje' => $e->getMessage()], 500);
+        }
+        
+    }
 }

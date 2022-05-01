@@ -57,4 +57,10 @@ class Consulta extends Model
         $banner = Consulta::findOrFail($request->id);
         $banner->delete();
     }
+
+    public static function eliminarMovil(Request $request)
+    {
+        $banner = Consulta::findOrFail($request->id);
+        $banner->delete();
+    }
 }

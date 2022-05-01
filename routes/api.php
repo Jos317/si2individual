@@ -28,4 +28,5 @@ Route::group(['middleware' => ['jwt.verify']], function (){
     Route::get('obtenerMedicos', [MedicoController::class, 'obtenerMedicos']);
     Route::get('obtenerConsultas', [ConsultaController::class, 'obtenerConsultas']);
     Route::post('crearConsulta', [ConsultaController::class, 'crearConsulta']);
+    Route::post('eliminarConsulta', [ConsultaController::class, 'eliminarConsulta']);
 });
