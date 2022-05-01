@@ -1,6 +1,6 @@
 <div id="header" class="app-header">
     <div class="navbar-header">
-        <a href="index.html" class="navbar-brand">
+        <a href="{{url('dashboard')}}" class="navbar-brand">
             <span class="navbar-logo">
                 <i class="ion-md-add-circle"></i>
             </span>
@@ -30,7 +30,7 @@
         <div class="navbar-item dropdown">
             <a href="#" data-bs-toggle="dropdown" class="navbar-link dropdown-toggle icon">
                 <i class="ion-ios-notifications"></i>
-                <span class="badge">5</span>
+                <span id="contador_notificacion" class="badge" style="display: none">&nbsp;</span>
             </a>
             <div class="dropdown-menu media-list dropdown-menu-end">
                 <div class="dropdown-header">NOTIFICATIONS</div>

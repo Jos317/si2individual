@@ -236,6 +236,9 @@
                     toastr.warning("{{ session('warning') }}");
             @endif
         </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.js'></script>
+        <link rel='stylesheet' href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css" />
         <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
         <script>
             var usuario = @json($usuario);
@@ -249,11 +252,36 @@
             var channel = pusher.subscribe('my-channel');
             channel.bind(`my-event_user_${usuario.id}`, function(data) {
                 // alert(JSON.stringify(data));
+                $('#contador_notificacion').show();
                 handleDashboardGritterNotification(
                     'Nueva consulta!!', 
                     `Se ha agendado una nueva consulta el ${data[0].inicio} por el paciente: ${data[0].paciente.nombre} ${data[0].paciente.apellido}`, 
                     `/${data[0].paciente.imagen}`
                 );
+
+                if( $('#calendar').length )         // use this if you are using id to check
+                {
+                    // $('#calendar').html('');
+
+                    $.ajax({
+                        type: "GET",
+                        url: "{{url('dashboard')}}",
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        dataType: 'JSON',
+                        success: function (response) {
+                            console.log(response.events);
+                            $("#calendar").fullCalendar('removeEvents'); 
+                            $("#calendar").fullCalendar('addEventSource', response.events); 
+                        },
+                        error: function (jqXHR, textStatus, errorThrown ) {
+                            console.log(jqXHR);
+                            console.log(textStatus);
+                            console.log(errorThrown );
+                        }
+                    });
+                }
             });
 
             var handleDashboardGritterNotification = function (title, text, image) {
@@ -270,6 +298,16 @@
                         });
                 }, 1000);
             };
+
+            document.addEventListener("click", someListener );
+
+            function someListener(event){
+                var element = event.target;
+                if(element.classList.contains("gritter-item") || element.classList.contains("gritter-title") || element.classList.contains("gritter-image")){
+                    $('#contador_notificacion').hide();
+                    window.location.replace("consultas");
+                }
+            }
         </script>
         @stack('scripts')
 

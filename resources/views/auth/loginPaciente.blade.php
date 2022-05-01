@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Login</title>
+    <title>Login Paciente</title>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
     <meta content="" name="description" />
     <meta content="" name="author" />
@@ -73,11 +73,10 @@
                         <div class="mb-20px">
                             <button type="submit" class="btn btn-success d-block w-100 h-45px btn-lg">Ingresar</button>
                         </div>
-                        {{-- <div class="text-gray-500">
-                                Not a member yet? Click
-                                <a href="javascript:;" class="text-white">here</a>
-                                to register.
-                            </div> --}}
+                        <div class="text-gray-500">
+                                Descargue nuestra aplicación
+                                <a href="javascript:;" class="text-white"> acá</a>
+                            </div>
                     </form>
                 </div>
 

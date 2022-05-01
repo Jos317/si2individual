@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $events = array();
         $consultas = Consulta::where('idusuario', Auth::user()->id)->get();
@@ -21,7 +21,11 @@ class DashboardController extends Controller
                 'end' => $consulta->fin,
             ];
         }
-        return view('dashboard.index', ['events' => $events]);
+        if($request->ajax()){
+            return response()->json(['events' => $events], 200);
+        }else{
+            return view('dashboard.index', ['events' => $events]);
+        }
     }
 
     public function prueba_pusher()
