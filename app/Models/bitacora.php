@@ -16,6 +16,7 @@ class Bitacora extends Model
         return $this->belongsTo('App\Models\User','idusuario','id');
     }
 
+    
     public function paciente(){
         return $this->belongsTo('App\Models\Paciente','idpaciente','id');
     }
