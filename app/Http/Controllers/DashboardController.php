@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\NotificacionEvent;
+use App\Events\NotificacionPaciente;
 use App\Models\Consulta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,5 +29,6 @@ class DashboardController extends Controller
         // event(new NotificacionEvent(auth()->user()));
         $consulta = Consulta::find(1)->load('user', 'paciente');
         event(new NotificacionEvent($consulta));
+        event(new NotificacionPaciente($consulta));
     }
 }
