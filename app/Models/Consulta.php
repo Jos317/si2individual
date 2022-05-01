@@ -42,7 +42,7 @@ class Consulta extends Model
         $consulta->inicio = $request->inicio;
         $consulta->fin = $request->fin;
         $consulta->idusuario = $request->idusuario; 
-        $consulta->idpaciente= $request->idpaciente;
+        $consulta->idpaciente= auth('api')->user()->id;
         $consulta->save();
     }
 

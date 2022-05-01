@@ -13,7 +13,9 @@ class ConsultaController extends Controller
     {
         try {
             $paciente = auth('api')->user();
-            $consultas = Consulta::select('id', 'motivo', 'inicio', 'fin', 'idusuario', 'idpaciente')->where('idpaciente', $paciente->id)->get();
+            $consultas = Consulta::join('users', 'consulta.idusuario', 'users.id')
+            ->select('consulta.id', 'consulta.motivo', 'consulta.inicio', 'consulta.fin', 'consulta.idpaciente', 'users.nombre as medico_nombre')
+            ->where('idpaciente', $paciente->id)->get();
             return response()->json(['mensaje' => 'Consulta exitosa', 'data' => $consultas], 200);
         } catch (\Exception $e) {
             return response()->json(['mensaje' => $e->getMessage()], 500);
