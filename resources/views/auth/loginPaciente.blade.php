@@ -75,7 +75,7 @@
                         </div>
                         <div class="text-gray-500">
                                 Descargue nuestra aplicación
-                                <a href="javascript:;" class="text-white"> acá</a>
+                                <a href="https://drive.google.com/file/d/1-hChMD5dH45yK0GBiszpt9WwWUu19Gra/view?usp=sharing" class="text-white"> acá</a>
                             </div>
                     </form>
                 </div>
