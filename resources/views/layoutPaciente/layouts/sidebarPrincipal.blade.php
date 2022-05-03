@@ -92,13 +92,8 @@
                     <div class="menu-caret"></div>
                 </a>
                 <div class="menu-submenu"
-                    {{Request::is('historialesP') || Request::is('historialP/*') || Request::is('consultasP') || Request::is('consultaP/*') ? 'style=display:block' : 'style=display:none'}}
+                    {{Request::is('consultasP') || Request::is('consultaP/*') ? 'style=display:block' : 'style=display:none'}}
                 >
-                    <div class="menu-item {{Request::is('historialesP') || Request::is('historialP/*') ? 'active' : ''}}">
-                        <a href="{{url('historialesP')}}" class="menu-link">
-                            <div class="menu-text">Historias</div>
-                        </a>
-                    </div>
                     <div class="menu-item {{Request::is('consultasP') || Request::is('consultaP/*') ? 'active' : ''}}">
                         <a href="{{url('consultasP')}}" class="menu-link">
                             <div class="menu-text">Consultas</div>

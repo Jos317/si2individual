@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Consulta;
+use App\Models\Historial;
 use App\Models\Infoadicional;
 use App\Models\Paciente;
 use Illuminate\Http\Request;
@@ -141,6 +142,45 @@ class PacienteController extends Controller
             Infoadicional::update_infoadicional($request);
             DB::commit();
             return redirect('pacientes')->with(['message' => 'Información adicional actualizado exitosamente!!']);
+        } catch (\Exception $e) {
+            DB::rollback();
+            return back()->with(['error' => $e->getMessage()]);
+        }
+    }
+
+    public function index_historial($id)
+    {
+        $historiales = Historial::select('historial.id', 'historial.documento','historial.nota', 'historial.created_at', 'historial.idpaciente')
+        ->where('historial.idpaciente', $id)
+        ->orderBy('id', 'DESC')
+        ->paginate(10);
+        
+        return view('historial.index', ['id' => $id], compact('historiales'));
+    }
+
+    public function download($id)
+    {
+        $historial = Historial::find($id);
+        // dd(Storage::download($historial->documento));
+        // return Storage::url($historial->documento);
+        return response()->file($historial->documento);
+    }
+
+    public function edit_historial($id)
+    {
+        $historial = Historial::where('id', $id)->first();
+        return view('historial.edit', compact('historial'));
+    }
+
+    public function update_historial(Request $request)
+    {
+        
+        // $this->updateValidator($request->all())->validate();
+        try {
+            DB::beginTransaction();
+            Historial::update_historial($request);
+            DB::commit();
+            return redirect('consultas')->with(['message' => 'Historial actualizada exitosamente!!']);
         } catch (\Exception $e) {
             DB::rollback();
             return back()->with(['error' => $e->getMessage()]);

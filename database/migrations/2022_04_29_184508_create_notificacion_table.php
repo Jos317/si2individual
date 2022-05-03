@@ -14,11 +14,7 @@ class CreateNotificacionTable extends Migration
     public function up()
     {
         Schema::create('notificacion', function (Blueprint $table) {
-            $table->id();
-            $table->string('estado', 10)->default('Pendiente');
-            $table->dateTime('inicio');
-            $table->unsignedBigInteger('idconsulta');
-            $table->foreign('idconsulta')->references('id')->on('consulta');
+            
         });
     }
 
