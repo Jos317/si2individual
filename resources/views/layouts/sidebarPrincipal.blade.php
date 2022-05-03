@@ -101,6 +101,15 @@
                     <div class="menu-text">Antecedentes de los pacientes</div>
                     <div class="menu-caret"></div>
                 </a>
+                <div class="menu-submenu"
+                    {{Request::is('consultas') || Request::is('consulta/*') ? 'style=display:block' : 'style=display:none'}}
+                >
+                    <div class="menu-item {{Request::is('consultas') || Request::is('consulta/*') ? 'active' : ''}}">
+                        <a href="{{url('consultas')}}" class="menu-link">
+                            <div class="menu-text">Consultas</div>
+                        </a>
+                    </div>
+                </div>
             </div>
             <div class="menu-divider m-0"></div>
             {{-- <div class="menu-header">Navigation</div>
