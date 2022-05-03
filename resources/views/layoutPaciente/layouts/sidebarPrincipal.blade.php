@@ -81,7 +81,6 @@
             <div class="menu-divider m-0"></div>
             <div class="menu-header">Historias Clínicas</div>
             <div class="menu-item has-sub
-                {{Request::is('historialesP') || Request::is('historialP/*') ? 'expand' : ''}}
                 {{Request::is('consultasP') || Request::is('consultaP/*') ? 'expand' : ''}}
             ">
                 <a href="javascript:;" class="menu-link">
@@ -91,20 +90,6 @@
                     <div class="menu-text">Antecedentes</div>
                     <div class="menu-caret"></div>
                 </a>
-                <div class="menu-submenu"
-                    {{Request::is('historialesP') || Request::is('historialP/*') || Request::is('consultasP') || Request::is('consultaP/*') ? 'style=display:block' : 'style=display:none'}}
-                >
-                    <div class="menu-item {{Request::is('historialesP') || Request::is('historialP/*') ? 'active' : ''}}">
-                        <a href="{{url('historialesP')}}" class="menu-link">
-                            <div class="menu-text">Historias</div>
-                        </a>
-                    </div>
-                    <div class="menu-item {{Request::is('consultasP') || Request::is('consultaP/*') ? 'active' : ''}}">
-                        <a href="{{url('consultasP')}}" class="menu-link">
-                            <div class="menu-text">Consultas</div>
-                        </a>
-                    </div>
-                </div>
             </div>
             <div class="menu-divider m-0"></div>
             {{-- <div class="menu-header">Navigation</div>

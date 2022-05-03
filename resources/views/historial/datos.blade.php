@@ -5,7 +5,6 @@
                 <th style="text-align: center">#</th>
                 <th style="text-align: center">Nombre del documento</th>
                 <th style="text-align: center">Fecha Registrada</th>
-                <th style="text-align: center">Nombre del paciente</th>
                 <th style="text-align: center">Opciones</th>
             </tr>
         </thead>
@@ -15,7 +14,6 @@
                     <td>{{$item->id}}</td>
                     <td>{{$item->nota}}</td>
                     <td>{{$item->created_at}}</td>
-                    <td>{{$item->paciente_nombre}}</td>
                     <td style="text-align: center">
                         <a class="btn btn-sm btn-primary me-1" href="{{url('historial/edit/'.$item->id)}}">
                             <i class="fas fa-pencil-alt fa-fw"></i> Editar

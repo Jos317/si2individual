@@ -62,11 +62,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('paciente/store_infoadicional', [PacienteController::class, 'store_adicional']);
     Route::get('paciente/edit_info/{id}', [PacienteController::class, 'edit_adicional']);
     Route::post('paciente/update_info', [PacienteController::class, 'update_adicional']);
-
-    Route::get('historiales', [HistorialController::class, 'index']);
-    Route::get('historial/edit/{id}', [HistorialController::class, 'edit']);
-    Route::post('historial/update', [HistorialController::class, 'update']);
-    Route::get('historial/download/{id}', [HistorialController::class, 'download']);
+    Route::get('historial/ver/{id}', [PacienteController::class, 'index_historial']);
+    Route::get('historial/download/{id}', [PacienteController::class, 'download']);
+    Route::get('historial/edit/{id}', [PacienteController::class, 'edit_historial']);
+    Route::post('historial/update', [PacienteController::class, 'update_historial']);
 
     Route::get('consultas', [ConsultaController::class, 'index']);
     Route::get('consulta/anadir/{id}', [ConsultaController::class, 'anadir']);
@@ -102,9 +101,7 @@ Route::middleware(['auth:paciente'])->group(function () {
     Route::post('pacienteP/store_infoadicional', [PacientePacienteController::class, 'store_adicional']);
     Route::get('pacienteP/edit_info/{id}', [PacientePacienteController::class, 'edit_adicional']);
     Route::post('pacienteP/update_info', [PacientePacienteController::class, 'update_adicional']);
-
-    Route::get('historialesP', [PacienteHistorialController::class, 'index']);
-    Route::get('historialP/download/{id}', [PacienteHistorialController::class, 'download']);
+    Route::get('historialP/download/{id}', [PacientePacienteController::class, 'download']);
 
     Route::get('consultasP', [PacienteConsultaController::class, 'index']);
     Route::post('consultaP/eliminar', [PacienteConsultaController::class, 'destroy']);

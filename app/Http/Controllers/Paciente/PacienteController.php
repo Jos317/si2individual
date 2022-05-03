@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Paciente;
 
 use App\Http\Controllers\Controller;
 use App\Models\Consulta;
+use App\Models\Historial;
 use App\Models\Infoadicional;
 use App\Models\Paciente;
 use Illuminate\Http\Request;
@@ -108,6 +109,24 @@ class PacienteController extends Controller
             DB::rollback();
             return back()->with(['error' => $e->getMessage()]);
         }
+    }
+
+    public function index_historial($id)
+    {
+        $historiales = Historial::select('historial.id', 'historial.documento','historial.nota', 'historial.created_at', 'historial.idpaciente')
+        ->where('historial.idpaciente', $id)
+        ->orderBy('id', 'DESC')
+        ->paginate(10);
+        
+        return view('layoutPaciente.historial.index', compact('historiales'));
+    }
+
+    public function download($id)
+    {
+        $historial = Historial::find($id);
+        // dd(Storage::download($historial->documento));
+        // return Storage::url($historial->documento);
+        return response()->file($historial->documento);
     }
 
 }
