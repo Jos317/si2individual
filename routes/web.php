@@ -101,6 +101,7 @@ Route::middleware(['auth:paciente'])->group(function () {
     Route::post('pacienteP/store_infoadicional', [PacientePacienteController::class, 'store_adicional']);
     Route::get('pacienteP/edit_info/{id}', [PacientePacienteController::class, 'edit_adicional']);
     Route::post('pacienteP/update_info', [PacientePacienteController::class, 'update_adicional']);
+    Route::get('historialP/ver/{id}', [PacientePacienteController::class, 'index_historial']);
     Route::get('historialP/download/{id}', [PacientePacienteController::class, 'download']);
 
     Route::get('consultasP', [PacienteConsultaController::class, 'index']);

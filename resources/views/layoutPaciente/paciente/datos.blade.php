@@ -44,6 +44,9 @@
                         <a class="btn btn-sm btn-primary me-1" href="{{url('pacienteP/edit/'.$item->id)}}">
                             <i class="fas fa-pencil-alt fa-fw"></i> Editar
                         </a>
+                        <a class="btn btn-sm btn-info me-1" href="{{url('historialP/ver/'.$item->id)}}">
+                            <i class="ion-md-clipboard"></i> Ver Historial
+                        </a>
 
                         {{-- <a class="btn btn-sm btn-danger me-1" onclick="eliminar({{$item->id}})">
                             <i class="fa fa-trash fa-fw" aria-hidden="true"></i>
