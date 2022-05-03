@@ -43,6 +43,19 @@ class Pacienteseeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
+            [
+                'nombre' => 'Takeshi',
+                'apellido' => 'Kanashiro',
+                'ci' => '8911801',
+                'telefono' => '78073371',
+                'direccion' => 'Equipetrol/Zona norte/ Av. Los cusis',
+                'sexo' => 'M',
+                'fecha_nac' => '2001-05-16',
+                'email' => 'takeshi@gmail.com',
+                'password' => Hash::make('12345'),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ]
         ]);
     }
 }
