@@ -111,6 +111,4 @@ Route::middleware(['auth:paciente'])->group(function () {
     Route::get('informacionP/ver/{id}', [PacienteConsultaController::class, 'ver_informacion']);
     Route::get('diagnosticoP/ver/{id}', [PacienteConsultaController::class, 'index_diagnostico']);
     Route::get('diagnosticoP/download/{id}', [PacienteConsultaController::class, 'download']);
-
-    Route::get('bitacoras', [BitacoraController::class, 'index']);
 });
