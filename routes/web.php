@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BitacoraController;
 use App\Http\Controllers\ConsultaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HistorialController;
@@ -111,5 +112,5 @@ Route::middleware(['auth:paciente'])->group(function () {
     Route::get('diagnosticoP/ver/{id}', [PacienteConsultaController::class, 'index_diagnostico']);
     Route::get('diagnosticoP/download/{id}', [PacienteConsultaController::class, 'download']);
 
-    // Route::get('bitacoras', [BitacoraController::class, 'index']);
+    Route::get('bitacoras', [BitacoraController::class, 'index']);
 });
