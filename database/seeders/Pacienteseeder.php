@@ -42,7 +42,7 @@ class Pacienteseeder extends Seeder
                 'password' => Hash::make('12345'),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
-            ]     
+            ],
         ]);
     }
 }
